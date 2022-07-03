@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import Navigation from './components/Navigation'
 import './styles.scss'
 
 export default class Header extends Component {
   render() {
     return (
-      <div>Header</div>
+      <section id='header'>
+        <Navigation />
+      </section>
     )
   }
 }
