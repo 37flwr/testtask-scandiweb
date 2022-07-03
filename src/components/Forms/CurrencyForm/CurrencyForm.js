@@ -1,12 +1,14 @@
 import React, { Component, useEffect } from 'react'
 import { Form } from 'formik';
 import { DropdownFormField } from '../../Formik/Fields'
+import IconArrow from '../../../assets/Arrow.svg'
+import classNames from 'classnames';
 
 const formFields = () =>
   [
     {
       id: 'all',
-      name: 'value',
+      name: 'currency',
       value: 'all',
       label: 'All',
       type: 'radio',
@@ -14,7 +16,7 @@ const formFields = () =>
     },
     {
       id: 'tips',
-      name: 'value',
+      name: 'currency',
       value: 'tips',
       label: 'Tips',
       type: 'radio',
@@ -22,7 +24,7 @@ const formFields = () =>
     },
     {
       id: 'update',
-      name: 'value',
+      name: 'currency',
       value: 'update',
       label: 'Update',
       type: 'radio',
@@ -35,7 +37,6 @@ const formFields = () =>
   );
 
   export default class CurrencyForm extends Component {
-    
     componentDidMount() {
       this.setState({active: false})
     }
@@ -46,27 +47,21 @@ const formFields = () =>
 
     render() {
       return (
-        <>
-        <Form className="dropdown-form is-column align-center" autoComplete="off">
+        <Form className="dropdown-form" autoComplete="off">
           <div
-            className={`dropdown-filter karla${this.state?.active ? ' dropdown-active': ''}`}
+            className={classNames("dropdown-filter", this.state?.active && "dropdown-active")}
             onClick={() => this.handleClick()}
           >
             <div className="dropdown-filter-container">
               <span>Section:</span>
               <label className="dropdown-filter-value">{this.props.values?.currency}</label>
             </div>
-            {this.state?.active ? (
-              1
-            ) : (
-              // <img
-              //   src={IconArrowDown}
-              //   id="dropdown-arrow"
-              //   alt=""
-              //   className="arrow-dropdown"
-              // />
-              2
-            )}
+            <img
+              src={IconArrow}
+              id="dropdown-arrow"
+              alt={`Show ${this.state?.active ? "less" : "more"}`}
+              className={classNames("arrow-dropdown", this.state?.active && "active")}
+            />
           </div>
           {this.state?.active && (
             <div className="dropdown-fields-container">
@@ -77,7 +72,6 @@ const formFields = () =>
             Filter
           </button>
         </Form>
-      </>
-    )
+      )
+    }
   }
-}

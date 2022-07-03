@@ -3,6 +3,7 @@ import { Field } from 'formik';
 
 export default class DropdownFormField extends Component {
   render() {
+      console.log(this.props);
     return (
         <div className='dropdown-input-container' >
             {this.props.label && <label className="input-label" htmlFor={this.props.id}>{this.props.label}</label>}
