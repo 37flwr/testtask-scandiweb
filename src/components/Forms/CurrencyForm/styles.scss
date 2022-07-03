@@ -1,0 +1,37 @@
+.dropdown-form {
+  position: relative;
+  width: auto;
+
+  .dropdown-value {
+    display: flex;
+    gap: 5px;
+
+    .active {
+      transform: rotate(180deg);
+    }
+  }
+
+  .dropdown-fields-container {
+    width: 114px;
+    position: absolute;
+    top: 20px;
+    left: -40px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+
+    .dropdown-input-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .active {
+      background-color: var(--background-transparent);
+    }
+  }
+
+  .dropdown-submit {
+    display: none;
+  }
+}

@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { formatCurrency } from '../../../utils';
 import './styles.scss';
 
-const formFields = () =>
+const formFields = (active) =>
   [
     {
       id: 'usd',
@@ -14,6 +14,7 @@ const formFields = () =>
       value: 'usd',
       label: 'USD',
       type: 'radio',
+      active: active,
       show: true,
     },
     {
@@ -22,6 +23,7 @@ const formFields = () =>
       value: 'eur',
       label: 'EUR',
       type: 'radio',
+      active: active,
       show: true,
     },
     {
@@ -30,6 +32,7 @@ const formFields = () =>
       value: 'jpy',
       label: 'JPY',
       type: 'radio',
+      active: active,
       show: true,
     },
   ].filter(({ show }) => show);
@@ -48,25 +51,24 @@ const formFields = () =>
     }
 
     render() {
+      console.log(this.props.values);
       return (
         <Form className="dropdown-form" autoComplete="off">
           <div
-            className={classNames("dropdown-filter", this.state?.active && "dropdown-active")}
+            className={classNames("dropdown-value", this.state?.active && "dropdown-active")}
             onClick={() => this.handleClick()}
           >
-            <div className="dropdown-filter-container">
-              <label className="dropdown-filter-value">{formatCurrency(this.props.values?.currency, 'short')}</label>
-              <img
-                src={IconArrow}
-                id="dropdown-arrow"
-                alt={`Show ${this.state?.active ? "less" : "more"}`}
-                className={classNames("arrow-dropdown", this.state?.active && "active")}
-              />
-            </div>
+            <label className="dropdown-value-data">{formatCurrency(this.props.values?.currency, 'short')}</label>
+            <img
+              src={IconArrow}
+              id="dropdown-arrow"
+              alt={`Show ${this.state?.active ? "less" : "more"}`}
+              className={classNames("arrow-dropdown", this.state?.active && "active")}
+            />
           </div>
           {this.state?.active && (
             <div className="dropdown-fields-container">
-              {formFields().map(renderDropdownFormField)}
+              {formFields(this.props.values?.currency).map(renderDropdownFormField)}
             </div>
           )}
           <button id="form-submit" type="submit" className="dropdown-submit">
