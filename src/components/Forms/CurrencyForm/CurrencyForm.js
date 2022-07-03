@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react'
+import React, { Component } from 'react'
 import { Form } from 'formik';
 import { DropdownFormField } from '../../Formik/Fields'
 import IconArrow from '../../../assets/Arrow.svg'
@@ -7,26 +7,26 @@ import classNames from 'classnames';
 const formFields = () =>
   [
     {
-      id: 'all',
+      id: 'usd',
       name: 'currency',
-      value: 'all',
-      label: 'All',
+      value: 'usd',
+      label: 'USD',
       type: 'radio',
       show: true,
     },
     {
-      id: 'tips',
+      id: 'eur',
       name: 'currency',
-      value: 'tips',
-      label: 'Tips',
+      value: 'eur',
+      label: 'EUR',
       type: 'radio',
       show: true,
     },
     {
-      id: 'update',
+      id: 'jpy',
       name: 'currency',
-      value: 'update',
-      label: 'Update',
+      value: 'jpy',
+      label: 'JPY',
       type: 'radio',
       show: true,
     },
@@ -46,6 +46,7 @@ const formFields = () =>
     }
 
     render() {
+      console.log(this.props.values);
       return (
         <Form className="dropdown-form" autoComplete="off">
           <div
