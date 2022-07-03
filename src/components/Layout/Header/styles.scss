@@ -4,12 +4,18 @@
 
   padding: 0 101px;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 
-  .logo {
-    width: 41px;
-    height: 41px;
+  .logo-container {
+    grid-column-start: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .logo {
+      width: 41px;
+      height: 41px;
+    }
   }
 }
