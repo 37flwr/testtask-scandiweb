@@ -5,7 +5,6 @@ import { CHANGE_CURRENCY } from './actionTypes';
 
 function* changeCurrencySaga({ payload }) {
     try {
-        console.log(payload.currency);
         yield put(changeCurrencySuccess(payload.currency));
     } catch (error) {
         console.log(error)

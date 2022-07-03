@@ -13,13 +13,11 @@ class CurrencyFormContainer extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
         <Formik
             enableReinitialize
             initialValues={this.initialValues}
             onSubmit={(form) => {
-                console.log(form);
                 this.props.changeCurrency(form)
             }}
         >

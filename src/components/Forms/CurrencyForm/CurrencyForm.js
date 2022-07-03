@@ -108,7 +108,6 @@ class CurrencyForm extends Component {
   }
 }
 
-
 const mapStateToProps = state => ({
     currency: state.Currency
 });

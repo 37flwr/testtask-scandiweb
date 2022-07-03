@@ -23,11 +23,12 @@
   .dropdown-fields-container {
     width: 114px;
     position: absolute;
-    top: 20px;
+    top: 30px;
     left: -40px;
     display: flex;
     flex-direction: column;
     padding: 10px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
     .dropdown-input-container {
       width: 100%;
@@ -35,6 +36,16 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
+
+      .input-label {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+
+        font-size: 18px;
+      }
     }
 
     .active {
