@@ -55,7 +55,7 @@ const formFields = () =>
             onClick={() => this.handleClick()}
           >
             <div className="dropdown-filter-container">
-              <label className="dropdown-filter-value">{formatCurrency(this.props.values?.currency)}</label>
+              <label className="dropdown-filter-value">{formatCurrency(this.props.values?.currency, 'short')}</label>
               <img
                 src={IconArrow}
                 id="dropdown-arrow"

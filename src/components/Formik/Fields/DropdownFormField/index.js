@@ -9,7 +9,7 @@ export default class DropdownFormField extends Component {
         <div className='dropdown-input-container' >
             {this.props.label && 
                 <label className="input-label" htmlFor={this.props.id}>
-                    {formatCurrency(this.props.label)}
+                    {formatCurrency(this.props.label, 'full')}
                 </label>
             }
             <Field
