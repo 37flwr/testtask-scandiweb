@@ -3,6 +3,8 @@ import { Form } from 'formik';
 import { DropdownFormField } from '../../Formik/Fields'
 import IconArrow from '../../../assets/Arrow.svg'
 import classNames from 'classnames';
+import { formatCurrency } from '../../../utils';
+import './styles.scss';
 
 const formFields = () =>
   [
@@ -46,7 +48,6 @@ const formFields = () =>
     }
 
     render() {
-      console.log(this.props.values);
       return (
         <Form className="dropdown-form" autoComplete="off">
           <div
@@ -54,15 +55,14 @@ const formFields = () =>
             onClick={() => this.handleClick()}
           >
             <div className="dropdown-filter-container">
-              <span>Section:</span>
-              <label className="dropdown-filter-value">{this.props.values?.currency}</label>
+              <label className="dropdown-filter-value">{formatCurrency(this.props.values?.currency)}</label>
+              <img
+                src={IconArrow}
+                id="dropdown-arrow"
+                alt={`Show ${this.state?.active ? "less" : "more"}`}
+                className={classNames("arrow-dropdown", this.state?.active && "active")}
+              />
             </div>
-            <img
-              src={IconArrow}
-              id="dropdown-arrow"
-              alt={`Show ${this.state?.active ? "less" : "more"}`}
-              className={classNames("arrow-dropdown", this.state?.active && "active")}
-            />
           </div>
           {this.state?.active && (
             <div className="dropdown-fields-container">
