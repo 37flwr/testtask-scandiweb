@@ -42,21 +42,49 @@ const formFields = (active) =>
   );
 
   export default class CurrencyForm extends Component {
+    constructor(props) {
+      super(props)
+
+      this.wrapperRef = React.createRef();
+      this.handleClickOutside = this.handleClickOutside.bind(this);
+    }
     componentDidMount() {
+      this.setState({active: false})
+      document.addEventListener("mousedown", this.handleClickOutside);
+    }
+
+    componentWillUnmount() {
+      document.removeEventListener("mousedown", this.handleClickOutside);
+    }
+
+    componentDidUpdate(prevProps) {
+      if (prevProps.values?.currency !== this.props.values?.currency) {
+        this.handleValuesUpdate();
+      }
+    }
+
+    handleValuesUpdate() {
+      document.getElementById('form-submit').click()
       this.setState({active: false})
     }
 
-    handleClick() {
+    handleElementClick() {
       this.setState({active: !this.state.active})
     }
 
+    // Handle click outside of the button
+    handleClickOutside(event) {
+      if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
+        this.setState({active: false})
+      }
+    }
+
     render() {
-      console.log(this.props.values);
       return (
-        <Form className="dropdown-form" autoComplete="off">
+        <Form className="dropdown-form" autoComplete="off" ref={this.wrapperRef}>
           <div
             className={classNames("dropdown-value", this.state?.active && "dropdown-active")}
-            onClick={() => this.handleClick()}
+            onClick={() => this.handleElementClick()}
           >
             <label className="dropdown-value-data">{formatCurrency(this.props.values?.currency, 'short')}</label>
             <img
