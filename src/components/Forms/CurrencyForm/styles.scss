@@ -5,9 +5,18 @@
   .dropdown-value {
     display: flex;
     gap: 5px;
+    cursor: pointer;
 
     .active {
       transform: rotate(180deg);
+    }
+
+    .dropdown-value-data {
+      cursor: pointer;
+    }
+
+    .dropdown-arrow {
+      margin-top: 3px;
     }
   }
 
@@ -21,9 +30,11 @@
     padding: 10px 0;
 
     .dropdown-input-container {
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
     }
 
     .active {

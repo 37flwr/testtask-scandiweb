@@ -48,6 +48,7 @@ const formFields = (active) =>
       this.wrapperRef = React.createRef();
       this.handleClickOutside = this.handleClickOutside.bind(this);
     }
+
     componentDidMount() {
       this.setState({active: false})
       document.addEventListener("mousedown", this.handleClickOutside);
@@ -72,7 +73,6 @@ const formFields = (active) =>
       this.setState({active: !this.state.active})
     }
 
-    // Handle click outside of the button
     handleClickOutside(event) {
       if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
         this.setState({active: false})
@@ -91,7 +91,7 @@ const formFields = (active) =>
               src={IconArrow}
               id="dropdown-arrow"
               alt={`Show ${this.state?.active ? "less" : "more"}`}
-              className={classNames("arrow-dropdown", this.state?.active && "active")}
+              className={classNames("dropdown-arrow", this.state?.active && "active")}
             />
           </div>
           {this.state?.active && (
