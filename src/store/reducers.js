@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
 // currency
-import Currency from './theme/reducer';
+import Currency from './currency/reducer';
 
 const rootReducer = combineReducers({ Currency })
 
