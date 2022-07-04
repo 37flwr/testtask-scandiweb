@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import CurrencyFormContainer from '../../../../Forms/CurrencyForm/CurrencyFormContainer'
-import IconCart from '../../../../../assets/Cart.svg'
+import Cart from './Cart'
 import './styles.scss'
 
 export default class Details extends Component {
@@ -8,7 +8,7 @@ export default class Details extends Component {
     return (
       <div className='details'>
         <CurrencyFormContainer />
-        <img src={IconCart} alt="" className='cart-icon' />
+        <Cart />
       </div>
     )
   }
