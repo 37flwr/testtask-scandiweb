@@ -4,6 +4,13 @@ import IconCart from '../../../../../../assets/Cart.svg'
 import './styles.scss'
 
 export default class Cart extends Component {
+    constructor(props) {
+        super(props)
+
+        this.wrapperRef = React.createRef();
+        this.handleClickOutside = this.handleClickOutside.bind(this);
+    }
+
     componentDidMount() {
         this.setState({
             active: false,
@@ -27,7 +34,7 @@ export default class Cart extends Component {
 
     render() {
         return (
-            <div className='cart'>
+            <div className='cart' ref={this.wrapperRef}>
                 <img 
                     src={IconCart} 
                     alt=""

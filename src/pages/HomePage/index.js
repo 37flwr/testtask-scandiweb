@@ -4,7 +4,11 @@ import './styles.scss'
 export default class HomePage extends Component {
   render() {
     return (
-      <div>HomePage</div>
+      <section>
+        <h1>
+          Category name
+        </h1>
+      </section>
     )
   }
 }

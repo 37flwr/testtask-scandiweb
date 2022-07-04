@@ -1,3 +1,4 @@
 import formatCurrency from "./formatCurrency";
+import { hashing, parse } from "./hash.ts"
 
-export {formatCurrency}
+export { formatCurrency, hashing, parse }
