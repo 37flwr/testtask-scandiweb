@@ -1,16 +1,16 @@
 const formatCurrency = (type, style) => {
-    if(type.toLowerCase() === 'usd' && style === 'full') {
-        return '$ USD'
-    } else if (type.toLowerCase() === 'usd' && style === 'short') {
+    if(type.toLowerCase() === 'usd') {
         return '$'
-    } else if (type.toLowerCase() === 'eur' && style === 'full') {
-        return '€ EUR'
-    } else if (type.toLowerCase() === 'eur' && style === 'short') {
+    } else if (type.toLowerCase() === 'eur') {
         return '€'
-    } else if (type.toLowerCase() === 'jpy' && style === 'full') {
-        return '¥ JPY'
-    } else if (type.toLowerCase() === 'jpy' && style === 'short') {
+    } else if (type.toLowerCase() === 'jpy') {
         return '¥'
+    } else if (type.toLowerCase() === 'gbp') {
+        return '£'
+    } else if (type.toLowerCase() === 'aud') {
+        return 'A$'
+    } else if (type.toLowerCase() === 'rub') {
+        return '₽'
     }
     return 'UNDF'
 }

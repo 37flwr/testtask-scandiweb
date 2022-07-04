@@ -92,7 +92,7 @@ class CurrencyForm extends Component {
           className={classNames("dropdown-value", this.state?.active && "dropdown-active")}
           onClick={() => this.handleElementClick()}
         >
-          <label className="dropdown-value-data">{formatCurrency(this.props.currency?.currency, 'short')}</label>
+          <label className="dropdown-value-data">{formatCurrency(this.props.currency?.currency)}</label>
           <img
             src={IconArrow}
             id="dropdown-arrow"
@@ -105,9 +105,7 @@ class CurrencyForm extends Component {
             {this.state.currencies.map(renderDropdownFormField)}
           </div>
         )}
-        <button id="form-submit" type="submit" className="dropdown-submit">
-          Filter
-        </button>
+        <button id="form-submit" type="submit" className="dropdown-submit" />
       </Form>
     )
   }
