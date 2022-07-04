@@ -2,45 +2,20 @@ import React, { Component } from 'react'
 import { Form } from 'formik';
 import { DropdownFormField } from '../../Formik/Fields'
 import IconArrow from '../../../assets/Arrow.svg'
+import ApolloClient from 'apollo-boost';
 import classNames from 'classnames';
 import { formatCurrency } from '../../../utils';
+import { gql } from 'apollo-boost';
 import { connect } from 'react-redux';
 import './styles.scss';
-
-const formFields = (active) =>
-  [
-    {
-      id: 'usd',
-      name: 'currency',
-      value: 'usd',
-      label: 'USD',
-      type: 'radio',
-      active: active,
-      show: true,
-    },
-    {
-      id: 'eur',
-      name: 'currency',
-      value: 'eur',
-      label: 'EUR',
-      type: 'radio',
-      active: active,
-      show: true,
-    },
-    {
-      id: 'jpy',
-      name: 'currency',
-      value: 'jpy',
-      label: 'JPY',
-      type: 'radio',
-      active: active,
-      show: true,
-    },
-  ].filter(({ show }) => show);
 
 const renderDropdownFormField = ({ show, ...fieldProps }) => (
   <DropdownFormField key={fieldProps.value} {...fieldProps} />
 );
+
+const client = new ApolloClient({
+  uri: 'http://localhost:4000'
+})
 
 class CurrencyForm extends Component {
   constructor(props) {
@@ -50,9 +25,15 @@ class CurrencyForm extends Component {
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
+  // lifecycles
   componentDidMount() {
-    this.setState({active: false})
+    this.setState({
+      active: false,
+      currencies: null,
+      activeCurrency: this.props.values.currency
+    })
     document.addEventListener("mousedown", this.handleClickOutside);
+    this.handleCurrenciesFetch()
   }
 
   componentWillUnmount() {
@@ -63,6 +44,30 @@ class CurrencyForm extends Component {
     if (prevProps.values?.currency !== this.props.values?.currency) {
       this.handleValuesUpdate();
     }
+  }
+
+  // handlers
+  async handleCurrenciesFetch() {
+    const response = await client
+        .query({
+            query: gql`
+                {
+                    currencies {
+                        label
+                        symbol
+                    }
+                }
+            `
+        })
+    response.data.currencies.map(item => {
+      item.name = 'currency'
+      item.show = true
+      item.value = item.label.toLowerCase()
+      item.type = 'radio'
+    })
+    this.setState({
+        currencies: response.data.currencies
+    })
   }
 
   handleValuesUpdate() {
@@ -97,7 +102,7 @@ class CurrencyForm extends Component {
         </div>
         {this.state?.active && (
           <div className="dropdown-fields-container">
-            {formFields(this.props.values?.currency).map(renderDropdownFormField)}
+            {this.state.currencies.map(renderDropdownFormField)}
           </div>
         )}
         <button id="form-submit" type="submit" className="dropdown-submit">

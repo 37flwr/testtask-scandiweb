@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
 import { Field } from 'formik';
-import { formatCurrency } from '../../../../utils';
+import { connect } from 'react-redux';
 import './styles.scss';
 import classNames from 'classnames';
 
-export default class DropdownFormField extends Component {
+class DropdownFormField extends Component {
   render() {
     return (
-        <div className={classNames('dropdown-input-container', this.props.active === this.props.value && 'active')} >
+        <div className={classNames('dropdown-input-container', this.props.currency.currency === this.props.value && 'active')} >
             {this.props.label && 
-                <label className="input-label" htmlFor={this.props.id}>
-                    {formatCurrency(this.props.label, 'full')}
+                <label className="input-label" htmlFor={this.props.value}>
+                    {this.props.symbol} {this.props.label}
                 </label>
             }
             <Field
                 name={this.props.name}
-                id={this.props.id}
+                id={this.props.value}
                 component={this.props.component}
                 type={this.props.type}
                 value={this.props.value}
@@ -26,3 +26,9 @@ export default class DropdownFormField extends Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+    currency: state.Currency
+});
+
+export default connect(mapStateToProps, null)(DropdownFormField)
