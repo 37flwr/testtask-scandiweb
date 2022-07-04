@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames';
 import IconCart from '../../../../../../assets/Cart.svg'
+import './styles.scss'
 
 export default class Cart extends Component {
     componentDidMount() {
@@ -34,7 +35,7 @@ export default class Cart extends Component {
                     onClick={() => this.handleElementClick()}
                 />
                 {this.state?.active && (
-                    <div className="dropdown-fields-container">
+                    <div className="dropdown-cart-container">
                         1
                     </div>
                 )}

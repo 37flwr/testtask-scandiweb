@@ -1,21 +1,27 @@
 import React, { Component } from 'react'
-import { Form } from 'formik';
-import { DropdownFormField } from '../../Formik/Fields'
-import IconArrow from '../../../assets/Arrow.svg'
-import ApolloClient from 'apollo-boost';
-import classNames from 'classnames';
-import { formatCurrency } from '../../../utils';
-import { gql } from 'apollo-boost';
 import { connect } from 'react-redux';
+import { Form } from 'formik';
+import classNames from 'classnames';
+import ApolloClient, { gql } from 'apollo-boost';
+
+import { DropdownFormField } from '../../Formik/Fields'
+
+import { formatCurrency } from '../../../utils';
+import IconArrow from '../../../assets/Arrow.svg'
+
 import './styles.scss';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:4000'
+});
+
+const mapStateToProps = state => ({
+    currency: state.Currency
+});
 
 const renderDropdownFormField = ({ show, ...fieldProps }) => (
   <DropdownFormField key={fieldProps.value} {...fieldProps} />
 );
-
-const client = new ApolloClient({
-  uri: 'http://localhost:4000'
-})
 
 class CurrencyForm extends Component {
   constructor(props) {
@@ -30,7 +36,6 @@ class CurrencyForm extends Component {
     this.setState({
       active: false,
       currencies: null,
-      activeCurrency: this.props.values.currency
     })
     document.addEventListener("mousedown", this.handleClickOutside);
     this.handleCurrenciesFetch()
@@ -92,7 +97,7 @@ class CurrencyForm extends Component {
           className={classNames("dropdown-value", this.state?.active && "dropdown-active")}
           onClick={() => this.handleElementClick()}
         >
-          <label className="dropdown-value-data">{formatCurrency(this.props.currency?.currency)}</label>
+          <label className="dropdown-value-data">{formatCurrency(this.props.values?.currency)}</label>
           <img
             src={IconArrow}
             id="dropdown-arrow"
@@ -110,9 +115,5 @@ class CurrencyForm extends Component {
     )
   }
 }
-
-const mapStateToProps = state => ({
-    currency: state.Currency
-});
 
 export default connect(mapStateToProps, null)(CurrencyForm)
