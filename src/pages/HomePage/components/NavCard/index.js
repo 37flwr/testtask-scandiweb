@@ -8,7 +8,7 @@ export default class NavCard extends Component {
     return (
         <Link
             className='nav-card'
-            to={`/${this.props.category}`}
+            to={`/:${this.props.category}`}
         >
             <span className='nav-card-text'>
                 {capitalizeFirstLetter(this.props.category)}

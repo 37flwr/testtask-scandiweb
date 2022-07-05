@@ -1,18 +1,25 @@
 import React, { Component } from 'react'
-import { getParams } from '../../utils'
+import { useParams } from 'react-router';
 import './styles.scss'
 
-export default class ProductPage extends Component {
+function withParams(Component) {
+  return props => <Component {...props} params={useParams()} />;
+}
+
+class ProductPage extends Component {
     componentDidMount() {
-        const params = getParams('category')
         this.setState({
-            params: params
+            type: this.props.params.category
         })
     }
     render() {
-        console.log(this.state?.params);
+        console.log(this.state?.type.slice(1));
         return (
-            <div>ProductPage</div>
+            <div>
+                1
+            </div>
         )
     }
 }
+
+export default withParams(ProductPage)

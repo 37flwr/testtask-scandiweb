@@ -8,7 +8,7 @@ export const publicRoutes = [
         component: HomePage,
     },
     {
-        path: `/products`,
+        path: `/:category`,
         exact: false,
         component: ProductPage,
     },

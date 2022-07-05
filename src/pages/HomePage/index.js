@@ -33,7 +33,7 @@ export default class HomePage extends Component {
       <section id='main-page'>
         {this.state?.categories?.map(
           ({name}, idx) => <NavCard key={idx} category={name} />
-          )}
+        )}
       </section>
     )
   }
