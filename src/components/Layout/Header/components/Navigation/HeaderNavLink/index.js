@@ -6,9 +6,10 @@ import './styles.scss'
 
 export default class HeaderNavLink extends Component {
   render() {
+    console.log(window.location.pathname + window.location.search);
     return (
       <NavLink
-        to={`/${this.props.name}`}
+        to={`/products/${this.props.name}`}
         className={({isActive}) => classNames("nav-link", isActive && 'selected')}
       >
         {capitalizeFirstLetter(this.props.name)}
