@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { useParams } from 'react-router';
 import ApolloClient, { gql } from 'apollo-boost'
+import { capitalizeFirstLetter } from '../../utils';
+import ProductCard from './components/ProductCard';
 import './styles.scss'
 
 function withParams(Component) {
@@ -56,7 +58,7 @@ class ProductPage extends Component {
 
     async componentDidMount() {
         this.setState({
-            type: this.props.params.category
+            type: this.props.params.category.slice(1)
         })
         await this.handleCategoryFetch(this.props.params.category.slice(1))
     }
@@ -64,7 +66,7 @@ class ProductPage extends Component {
     async componentDidUpdate(prevState) {
         if(prevState.params.category !== this.props.params.category) {
             this.setState({
-                type: this.props.params.category
+                type: this.props.params.category.slice(1)
             })
             await this.handleCategoryFetch(this.props.params.category.slice(1))
         }
@@ -73,9 +75,20 @@ class ProductPage extends Component {
     render() {
         console.log(this.state?.products);
         return (
-            <div>
-                {this.state?.products?.map((product) => <div>{product.id}</div>)}
-            </div>
+            <section>
+                <h1>
+                    {this.state?.type && capitalizeFirstLetter(this.state.type)}
+                </h1>
+                <div className='products-grid'>
+                {this.state?.products?.map((product) => 
+                    <ProductCard
+                    img={product.gallery[0]}
+                    title={product.name}
+                    prices={product.prices}
+                    />
+                    )}
+                </div>
+            </section>
         )
     }
 }
