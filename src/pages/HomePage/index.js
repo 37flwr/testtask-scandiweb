@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ApolloClient, { gql } from 'apollo-boost'
+import NavCard from './components/NavCard';
 import './styles.scss'
 
 const client = new ApolloClient({
@@ -29,10 +30,10 @@ export default class HomePage extends Component {
 
   render() {
     return (
-      <section>
-        <h1>
-          Category name
-        </h1>
+      <section id='main-page'>
+        {this.state?.categories?.map(
+          ({name}, idx) => <NavCard key={idx} category={name} />
+        )}
       </section>
     )
   }

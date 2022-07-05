@@ -1,0 +1,9 @@
+#main-page {
+  box-sizing: border-box;
+
+  height: calc(100vh - 80px);
+  padding: 100px 150px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}

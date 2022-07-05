@@ -1,0 +1,19 @@
+.nav-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 2px solid var(--color-primary);
+  border-radius: 5px;
+
+  text-decoration: none;
+
+  &:hover {
+    transform: translate(-1px, -1px);
+  }
+
+  .nav-card-text {
+    color: var(--color-primary);
+    font-size: 18px;
+  }
+}
