@@ -27,18 +27,6 @@ class ProductPage extends Component {
                             name
                             inStock
                             gallery
-                            description
-                            category
-                            attributes {
-                                id
-                                name
-                                type
-                                items {
-                                    displayValue
-                                    value
-                                    id
-                                }
-                            }
                             prices {
                                 currency {
                                     label
@@ -46,7 +34,6 @@ class ProductPage extends Component {
                                 }
                                 amount
                             }
-                            brand
                         }
                     }
                 }
