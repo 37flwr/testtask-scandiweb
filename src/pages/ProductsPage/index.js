@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { useParams } from 'react-router';
 import ApolloClient, { gql } from 'apollo-boost'
+import { connect } from 'react-redux';
 import { capitalizeFirstLetter } from '../../utils';
 import ProductCard from './components/ProductCard';
 import './styles.scss'
@@ -73,19 +74,22 @@ class ProductPage extends Component {
     }
 
     render() {
-        console.log(this.state?.products);
+        console.log(this.props);
         return (
             <section>
                 <h1>
                     {this.state?.type && capitalizeFirstLetter(this.state.type)}
                 </h1>
                 <div className='products-grid'>
-                {this.state?.products?.map((product) => 
-                    <ProductCard
-                    img={product.gallery[0]}
-                    title={product.name}
-                    prices={product.prices}
-                    />
+                    {this.state?.products?.map((product) => 
+                        <ProductCard
+                            id={product.id}
+                            img={product.gallery[0]}
+                            title={product.name}
+                            prices={product.prices}
+                            inStock={product.inStock}
+                            currency={this.props.currency}
+                        />
                     )}
                 </div>
             </section>
@@ -93,4 +97,8 @@ class ProductPage extends Component {
     }
 }
 
-export default withParams(ProductPage)
+const mapStateToProps = state => ({
+    currency: state.Currency.currency
+});
+
+export default connect(mapStateToProps, null)(withParams(ProductPage))
