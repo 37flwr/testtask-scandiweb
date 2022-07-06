@@ -1,6 +1,7 @@
 import HomePage from '../pages/HomePage'
 import ItemPage from '../pages/ItemPage'
 import ProductPage from '../pages/ProductsPage'
+import CartPage from '../pages/CartPage'
 
 export const publicRoutes = [
     {
@@ -17,5 +18,10 @@ export const publicRoutes = [
         path: `/item:id`,
         exact: false,
         component: ItemPage,
+    },
+    {
+        path: `/cart`,
+        exact: false,
+        component: CartPage,
     },
 ]

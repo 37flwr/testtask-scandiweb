@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { useParams } from 'react-router';
 import ApolloClient, { gql } from 'apollo-boost'
 import './styles.scss'
-import classNames from 'classnames';
 
 const withParams = (Component) => {
   return props => <Component {...props} params={useParams()} />;
@@ -14,44 +13,44 @@ const client = new ApolloClient({
 
 class ItemPage extends Component {
   async handleCategoryFetch(value) {
-        const response = await client
-        .query({
-          query: gql`
-            {
-              product(id: "${value}") {
+    const response = await client
+    .query({
+      query: gql`
+        {
+          product(id: "${value}") {
+          id
+          name
+          inStock
+          gallery
+          description
+          category
+          attributes {
+            id
+            name
+            type
+            items {
+              displayValue
+              value
               id
-              name
-              inStock
-              gallery
-              description
-              category
-              attributes {
-                id
-                name
-                type
-                items {
-                  displayValue
-                  value
-                  id
-                }
-              }
-              prices {
-                currency {
-                  label
-                  symbol
-                }
-                amount
-              }
-              brand
-              }
             }
-          `
-        })
-        this.setState({
-            product: response.data.product,
-            mainImg: response.data.product.gallery[0]
-        })
-    }
+          }
+          prices {
+            currency {
+              label
+              symbol
+            }
+            amount
+          }
+          brand
+          }
+        }
+      `
+    })
+    this.setState({
+        product: response.data.product,
+        mainImg: response.data.product.gallery[0]
+    })
+  }
 
   async componentDidMount() {
     this.setState({
