@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { useParams } from 'react-router';
 import ApolloClient, { gql } from 'apollo-boost'
+import { connect } from 'react-redux';
+import { changeCart } from '../../store/actions'
 import './styles.scss'
 
 const withParams = (Component) => {
@@ -69,7 +71,7 @@ class ItemPage extends Component {
   }
   
   render() {
-    console.log(this.state?.product);
+    console.log(this.props.cart);
     return (
       <section className='item-page'>
         <div className='item-photos-gallery'>
@@ -122,7 +124,7 @@ class ItemPage extends Component {
                   12
                 </span>
               </div>
-              <button className='add-to-cart-btn'>
+              <button className='add-to-cart-btn' onClick={() => this.props.changeCart(this.state?.product)}>
                 Add to cart
               </button>
               <span dangerouslySetInnerHTML={{ __html: this.state?.product?.description }} />
@@ -133,4 +135,16 @@ class ItemPage extends Component {
   }
 }
 
-export default withParams(ItemPage)
+const mapStateToProps = state => ({
+    cart: state.Cart
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    changeCart: product => {
+      dispatch(changeCart(product))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withParams(ItemPage))

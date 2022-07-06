@@ -3,6 +3,9 @@ import { combineReducers } from "redux";
 // currency
 import Currency from './currency/reducer';
 
-const rootReducer = combineReducers({ Currency })
+// cart
+import Cart from './cart/reducer'
+
+const rootReducer = combineReducers({ Currency, Cart })
 
 export default rootReducer
