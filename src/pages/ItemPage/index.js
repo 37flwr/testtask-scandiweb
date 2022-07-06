@@ -17,11 +17,16 @@ const handleCardChange = (cart, newItem) => {
           tempArr[idx].qnt += 1
           changed = true
         }
-      })
+      }
+    )
     if(!changed) {
-      tempArr.push({qnt: 1, item: newItem})
+      tempArr.push({
+        qnt: 1,
+        item: newItem
+      })
       return tempArr
-    } return tempArr
+    }
+    return tempArr
   }
   return [{qnt: 1, item: newItem}]
 }
@@ -88,12 +93,12 @@ class ItemPage extends Component {
   }
   
   render() {
-    console.log(this.props.cart);
     return (
       <section className='item-page'>
         <div className='item-photos-gallery'>
-          {this.state?.product?.gallery.map((img) => 
-            <img 
+          {this.state?.product?.gallery.map((img, idx) => 
+            <img
+              key={idx}
               src={img}
               alt=""
               className='item-photo'
@@ -116,15 +121,15 @@ class ItemPage extends Component {
             </span>
           </div>
           <div className='item-attributes'>
-              {this.state?.product?.attributes.map((attr) => 
-                <div className='item-attribute'>
+              {this.state?.product?.attributes.map((attr, idx) => 
+                <div key={idx} className='item-attribute'>
                   <div className='item-attribute-heading'>
                     {attr.id}:
                   </div>
                   <div className='item-attribute-list'>
-                    {attr.items.map((item) => 
+                    {attr.items.map((item, idx) => 
                       attr.type === 'text' ?
-                        <div className='item-text-attribute'>
+                        <div key={idx} className='item-text-attribute'>
                           {item.value}
                         </div>
                       :
@@ -141,9 +146,12 @@ class ItemPage extends Component {
                   12
                 </span>
               </div>
-              <button className='add-to-cart-btn' onClick={() => {
+              <button 
+                className='add-to-cart-btn'
+                onClick={() => {
                   this.props.changeCart(handleCardChange(this.props.cart, this.state?.product))
-                }}>
+                }}
+              >
                 Add to cart
               </button>
               <span dangerouslySetInnerHTML={{ __html: this.state?.product?.description }} />

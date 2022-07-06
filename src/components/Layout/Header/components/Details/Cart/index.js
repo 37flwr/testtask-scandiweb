@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import classNames from 'classnames';
+import { changeCart } from '../../../../../../store/actions';
 import IconCart from '../../../../../../assets/Cart.svg'
 import './styles.scss'
 
-export default class Cart extends Component {
+class Cart extends Component {
     constructor(props) {
         super(props)
 
@@ -33,6 +35,7 @@ export default class Cart extends Component {
     }
 
     render() {
+        console.log(this.props.cart);
         return (
             <div className='cart' ref={this.wrapperRef}>
                 <img 
@@ -43,10 +46,26 @@ export default class Cart extends Component {
                 />
                 {this.state?.active && (
                     <div className="dropdown-cart-container">
-                        1
+                        {this.props.cart.cart.map((item) => 
+                            <div>{item.item.id}</div>
+                        )}
                     </div>
                 )}
             </div>
         )
     }
 }
+
+const mapStateToProps = state => ({
+    cart: state.Cart
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    changeCart: product => {
+      dispatch(changeCart(product))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)
