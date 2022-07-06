@@ -74,12 +74,11 @@ class ProductPage extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
-            <section>
-                <h1>
+            <section className='product-page'>
+                <div className='product-page-heading'>
                     {this.state?.type && capitalizeFirstLetter(this.state.type)}
-                </h1>
+                </div>
                 <div className='products-grid'>
                     {this.state?.products?.map((product) => 
                         <ProductCard

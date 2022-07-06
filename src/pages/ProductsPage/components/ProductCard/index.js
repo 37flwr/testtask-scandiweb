@@ -2,18 +2,13 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './styles.scss'
 
-const mapThroughtCurrencies = (currencyArray) => {
-    
-}
-
 export default class ProductCard extends Component {
     render() {
-        console.log(this.props.prices);
         return (
             <>
                 {this.props.inStock? 
                     <Link
-                        to={`/${this.props.id}`}
+                        to={`/item:${this.props.id}`}
                         className='product-card'
                     >
                         <div className='product-card-img-wrappper'>

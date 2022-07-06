@@ -1,4 +1,5 @@
 import HomePage from '../pages/HomePage'
+import ItemPage from '../pages/ItemPage'
 import ProductPage from '../pages/ProductsPage'
 
 export const publicRoutes = [
@@ -11,5 +12,10 @@ export const publicRoutes = [
         path: `/:category`,
         exact: false,
         component: ProductPage,
+    },
+    {
+        path: `/item:id`,
+        exact: false,
+        component: ItemPage,
     },
 ]
