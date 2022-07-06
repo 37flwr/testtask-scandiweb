@@ -1,0 +1,127 @@
+.item-page {
+  padding: 80px 100px;
+  display: flex;
+  gap: 40px;
+
+  .item-photos-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    .item-photo {
+      width: 80px;
+      height: 80px;
+      cursor: pointer;
+    }
+  }
+
+  .item-main-photo {
+    width: 610px;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .item-vitals {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      .item-brand {
+        color: var(--color-primary);
+        font-size: 30px;
+        font-weight: 600;
+        font-family: "Raleway", "sans-serif";
+      }
+
+      .item-title {
+        color: var(--color-primary);
+        font-size: 30px;
+        font-weight: 400;
+        font-family: "Raleway", "sans-serif";
+      }
+    }
+    .item-attributes {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      .item-attribute {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .item-attribute-heading {
+          color: var(--color-primary);
+          font-family: "Roboto Condensed", sans-serif;
+          font-size: 18px;
+          font-weight: 600;
+          text-transform: uppercase;
+        }
+
+        .item-attribute-list {
+          display: flex;
+          gap: 12px;
+
+          .item-text-attribute {
+            height: 45px;
+            width: 63px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid var(--color-primary);
+            color: var(--color-primary);
+            font-family: "Source Sans Pro", sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            cursor: pointer;
+          }
+
+          .item-color-attribute {
+            height: 32px;
+            width: 32px;
+            border: 1px solid var(--color-primary);
+            cursor: pointer;
+          }
+        }
+      }
+      .item-price {
+        display: flex;
+        flex-direction: column;
+
+        .item-price-heading {
+          color: var(--color-primary);
+          font-family: "Roboto Condensed", sans-serif;
+          font-size: 18px;
+          font-weight: 600;
+          text-transform: uppercase;
+        }
+
+        .item-price-value {
+          color: var(--color-primary);
+          font-family: "Raleway", "sans-serif";
+          font-weight: 700;
+          font-size: 24px;
+        }
+      }
+      .add-to-cart-btn {
+        width: 292px;
+        height: 52px;
+        font-family: "Raleway", "sans-serif";
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--color-white);
+        text-transform: uppercase;
+        border: none;
+        background-color: var(--color-selected);
+        cursor: pointer;
+      }
+    }
+  }
+}
