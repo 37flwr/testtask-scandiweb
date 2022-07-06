@@ -5,8 +5,25 @@ import { connect } from 'react-redux';
 import { changeCart } from '../../store/actions'
 import './styles.scss'
 
-const withParams = (Component) => {
-  return props => <Component {...props} params={useParams()} />;
+
+const handleCardChange = (cart, newItem) => {
+  const tempArr = cart.cart
+
+  if(cart.cart) {
+    let changed = false
+    tempArr.map((item, idx) => 
+      {
+        if(item.item.id === newItem.id) {
+          tempArr[idx].qnt += 1
+          changed = true
+        }
+      })
+    if(!changed) {
+      tempArr.push({qnt: 1, item: newItem})
+      return tempArr
+    } return tempArr
+  }
+  return [{qnt: 1, item: newItem}]
 }
 
 const client = new ApolloClient({
@@ -49,8 +66,8 @@ class ItemPage extends Component {
       `
     })
     this.setState({
-        product: response.data.product,
-        mainImg: response.data.product.gallery[0]
+      product: response.data.product,
+      mainImg: response.data.product.gallery[0]
     })
   }
 
@@ -124,7 +141,9 @@ class ItemPage extends Component {
                   12
                 </span>
               </div>
-              <button className='add-to-cart-btn' onClick={() => this.props.changeCart(this.state?.product)}>
+              <button className='add-to-cart-btn' onClick={() => {
+                  this.props.changeCart(handleCardChange(this.props.cart, this.state?.product))
+                }}>
                 Add to cart
               </button>
               <span dangerouslySetInnerHTML={{ __html: this.state?.product?.description }} />
@@ -133,6 +152,10 @@ class ItemPage extends Component {
       </section>
     )
   }
+}
+
+const withParams = (Component) => {
+  return props => <Component {...props} params={useParams()} />;
 }
 
 const mapStateToProps = state => ({
