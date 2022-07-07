@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
+import { handleAddToCart, handleRemoveFromCart, handleCountCartItems } from '../../../../../../utils/cartActions';
 import { changeCart } from '../../../../../../store/actions';
 import IconCart from '../../../../../../assets/Cart.svg'
 import './styles.scss'
-import { Link } from 'react-router-dom';
 
 class Cart extends Component {
     constructor(props) {
@@ -35,22 +36,11 @@ class Cart extends Component {
         }
     }
 
-    handleCartItemCount(cart) {
-        let i = 0;
-
-        cart?.map((item) => i = i + item.qnt)
-
-        if(i !== 0) {
-            return i
-        }
-        return false
-    }
-
     render() {
-        console.log(this.props.cart);
+        console.log(this.props.cart.cart);
         return (
             <div className='cart' ref={this.wrapperRef}>
-                {this.handleCartItemCount(this.props.cart.cart) ?
+                {handleCountCartItems(this.props.cart.cart) ?
                     <>
                         <img 
                             src={IconCart} 
@@ -61,7 +51,7 @@ class Cart extends Component {
                             }}
                         />
                         <div className='cart-qnt' onClick={() => this.handleElementClick()}>
-                            {this.handleCartItemCount(this.props.cart.cart)}
+                            {handleCountCartItems(this.props.cart.cart)}
                         </div>
                     </>
                 :
@@ -80,11 +70,11 @@ class Cart extends Component {
                                 <b>My Bag,</b>
                             </span>
                             <span>
-                                {this.handleCartItemCount(this.props.cart.cart)} {this.handleCartItemCount(this.props.cart.cart) > 1 ? 'items' : 'item'}
+                                {handleCountCartItems(this.props.cart.cart)} {handleCountCartItems(this.props.cart.cart) > 1 ? 'items' : 'item'}
                             </span>
                         </div>
                         <div className='dropdown-cart-list'>
-                            {this.props.cart.cart?.map((item) => 
+                            {this.props.cart.cart?.map((item) =>
                                 <div className='dropdown-cart-item'>
                                     <div className='cart-item-details'>
                                         <div className='cart-item-vitals'>
@@ -99,39 +89,46 @@ class Cart extends Component {
                                             12
                                         </span>
                                         <div className='cart-item-attr-container'>
-                                            {item.item.attributes.map((attr) => 
-                                                <div>
+                                            {item.item?.attributes?.map((attr) => 
+                                                <div className='cart-item-attr-content'>
                                                     <span>
                                                         {attr.name}:
                                                     </span>
-                                                    <div className='cart-item-attr-list'>
-                                                        {attr.items.map((item) => 
-                                                            attr.type === 'text' ?
-                                                            <div className='cart-item-attr-text'>
-                                                                {item.value}
-                                                            </div>
-                                                            :
-                                                            <div className='cart-item-attr-color' style={{'backgroundColor': item.value}}/>
-                                                        )}
-                                                    </div>
+                                                    {attr.type === 'text' ?
+                                                        <div className='cart-item-attr-list'>
+                                                            {attr.items.map((item) => 
+                                                                <div className='cart-item-attr-text'>
+                                                                    {item.value}
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    :
+                                                        <div className='cart-item-attr-list-color'>
+                                                            {attr.items.map((item) => 
+                                                                <div className='cart-item-attr-color' style={{'backgroundColor': item.value}}/>
+                                                            )}
+                                                        </div>
+                                                    }
                                                 </div>
                                             )}
                                         </div>
                                     </div>
                                     <div className='cart-item-qnt'>
-                                        <div className='cart-item-qnt-handler'>
+                                        <div className='cart-item-qnt-handler' onClick={() => this.props.changeCart(handleAddToCart(this.props.cart, item.item))}>
                                             +
                                         </div>
                                         <span>
                                             {item.qnt}
                                         </span>
-                                        <div className='cart-item-qnt-handler'>
+                                        <div className='cart-item-qnt-handler' onClick={() => this.props.changeCart(handleRemoveFromCart(this.props.cart, item.item))}>
                                             -
                                         </div>
                                     </div>
-                                    <div className='cart-item-photos'>
-                                        <img src={item.item.gallery[0]} alt="" />
-                                    </div>
+                                    <img
+                                        src={item.item.gallery[0]}
+                                        alt=""
+                                        className='cart-item-photo'
+                                    />
                                 </div>
                             )}
                         </div>
