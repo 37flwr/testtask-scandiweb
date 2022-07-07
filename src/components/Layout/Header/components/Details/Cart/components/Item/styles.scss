@@ -1,0 +1,23 @@
+.dropdown-cart-item {
+  display: flex;
+  justify-content: space-between;
+
+  .cart-item-qnt {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .cart-item-qnt-handler {
+      height: 24px;
+      width: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid var(--color-primary);
+    }
+  }
+
+  .cart-item-photo {
+    width: 121px;
+  }
+}

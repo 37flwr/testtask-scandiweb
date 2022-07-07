@@ -1,0 +1,31 @@
+.item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .item-vitals {
+    display: flex;
+    flex-direction: column;
+
+    span {
+      font-family: "Raleway", "sans-serif";
+      font-weight: 300;
+      font-size: 16px;
+      color: var(--color-primary);
+    }
+  }
+
+  .item-price {
+    font-family: "Raleway", "sans-serif";
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--color-primary);
+    margin-bottom: 4px;
+  }
+
+  .item-attr-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
