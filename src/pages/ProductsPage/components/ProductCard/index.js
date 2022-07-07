@@ -1,17 +1,45 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { changeCart } from '../../../../store/actions'
 import IconCart from '../../../../assets/Cart.svg'
 import './styles.scss'
 
-export default class ProductCard extends Component {
+const handleCardChange = (cart, newItem) => {
+    const tempArr = cart.cart
+
+    if(cart.cart) {
+        let changed = false
+        tempArr.map((item, idx) => 
+        {
+            if(item.item.id === newItem.id) {
+            tempArr[idx].qnt += 1
+            changed = true
+            }
+        }
+        )
+        if(!changed) {
+        tempArr.push({
+            qnt: 1,
+            item: newItem
+        })
+        return tempArr
+        }
+        return tempArr
+    }
+    return [{qnt: 1, item: newItem}]
+}
+
+class ProductCard extends Component {
     render() {
+        console.log(this.props.item);
         return (
             <>
                 {this.props.inStock? 
                     <div className='product-card active'>
-                        <button className='add-to-cart' onClick={() => console.log(1)}>
-                                <img src={IconCart} alt="Add to cart" />
-                            </button>
+                        <button className='add-to-cart' onClick={() => this.props.changeCart(handleCardChange(this.props.cart, this.props.item))}>
+                            <img src={IconCart} alt="Add to cart" />
+                        </button>
                         <Link
                             to={`/item:${this.props.id}`}
                             className='product-card-wrapper'
@@ -21,7 +49,6 @@ export default class ProductCard extends Component {
                                 alt={this.props.title} 
                                 className='product-card-img' 
                             />
-                            
                             <div className='product-card-details'>
                                 <span className='product-card-title'>
                                     {this.props.title}
@@ -66,3 +93,17 @@ export default class ProductCard extends Component {
         )
     }
 }
+
+const mapStateToProps = state => ({
+    cart: state.Cart
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    changeCart: product => {
+      dispatch(changeCart(product))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCard)

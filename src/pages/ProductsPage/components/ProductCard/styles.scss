@@ -67,6 +67,7 @@
     position: absolute;
     top: 314px;
     right: 31px;
+
     z-index: 2;
 
     border-radius: 50%;
@@ -75,6 +76,8 @@
     cursor: pointer;
 
     img {
+      transform: translate(-5%, 10%);
+
       svg {
         color: red;
       }

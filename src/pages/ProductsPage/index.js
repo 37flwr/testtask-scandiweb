@@ -23,17 +23,30 @@ class ProductPage extends Component {
                     category(input: {title: "${value}"}) {
                         name
                         products {
+                        id
+                        name
+                        inStock
+                        gallery
+                        description
+                        category
+                        attributes {
                             id
                             name
-                            inStock
-                            gallery
-                            prices {
-                                currency {
-                                    label
-                                    symbol
-                                }
-                                amount
+                            type
+                            items {
+                            displayValue
+                            value
+                            id
                             }
+                        }
+                        prices {
+                            currency {
+                            label
+                            symbol
+                            }
+                            amount
+                        }
+                        brand
                         }
                     }
                 }
@@ -61,6 +74,7 @@ class ProductPage extends Component {
     }
 
     render() {
+        console.log(this.state?.products);
         return (
             <section className='product-page'>
                 <div className='product-page-heading'>
@@ -69,6 +83,7 @@ class ProductPage extends Component {
                 <div className='products-grid'>
                     {this.state?.products?.map((product) => 
                         <ProductCard
+                            item={product}
                             id={product.id}
                             img={product.gallery[0]}
                             title={product.name}
