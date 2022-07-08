@@ -1,9 +1,21 @@
-#main-page {
-  box-sizing: border-box;
-
+#home-page {
   height: calc(100vh - 80px);
-  padding: 100px 150px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+
+  .home-page-grid {
+    width: 100vw;
+    box-sizing: border-box;
+    padding: 100px 150px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+  }
+
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

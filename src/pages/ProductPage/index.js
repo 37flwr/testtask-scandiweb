@@ -35,7 +35,7 @@ const client = new ApolloClient({
   uri: 'http://localhost:4000'
 });
 
-class ItemPage extends Component {
+class ProductPage extends Component {
   async handleCategoryFetch(value) {
     const response = await client
     .query({
@@ -178,4 +178,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withParams(ItemPage))
+export default connect(mapStateToProps, mapDispatchToProps)(withParams(ProductPage))

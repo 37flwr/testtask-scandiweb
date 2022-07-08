@@ -14,7 +14,7 @@ const client = new ApolloClient({
   uri: 'http://localhost:4000'
 });
 
-class ProductPage extends Component {
+class ProductListPage extends Component {
     async handleCategoryFetch(value) {
         const response = await client
         .query({
@@ -101,4 +101,4 @@ const mapStateToProps = state => ({
     currency: state.Currency.currency
 });
 
-export default connect(mapStateToProps, null)(withParams(ProductPage))
+export default connect(mapStateToProps, null)(withParams(ProductListPage))

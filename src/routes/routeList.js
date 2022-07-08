@@ -1,6 +1,6 @@
 import HomePage from '../pages/HomePage'
-import ItemPage from '../pages/ItemPage'
-import ProductPage from '../pages/ProductsPage'
+import ProductPage from '../pages/ProductPage'
+import ProductListPage from '../pages/ProductListPage'
 import CartPage from '../pages/CartPage'
 
 export const publicRoutes = [
@@ -12,12 +12,12 @@ export const publicRoutes = [
     {
         path: `/:category`,
         exact: false,
-        component: ProductPage,
+        component: ProductListPage,
     },
     {
         path: `/item:id`,
         exact: false,
-        component: ItemPage,
+        component: ProductPage,
     },
     {
         path: `/cart`,
