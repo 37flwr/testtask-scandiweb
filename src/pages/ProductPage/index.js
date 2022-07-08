@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import { useParams } from 'react-router';
-import { connect } from 'react-redux';
 
-import Loader from '../../components/Loader';
-
-import { changeCart } from '../../store/actions';
-import { handleProductFetch, handleAddToCart } from '../../utils'
-
-import './styles.scss'
 import PhotoGallery from './PhotoGallery';
 import ProductDetails from './ProductDetails';
+import Loader from '../../components/Loader';
+
+import { handleProductFetch } from '../../utils'
+
+import './styles.scss'
 
 class ProductPage extends Component {
 
@@ -69,16 +67,4 @@ const withParams = (Component) => {
   return props => <Component {...props} params={useParams()} />;
 }
 
-const mapStateToProps = state => ({
-    cart: state.Cart
-});
-
-const mapDispatchToProps = dispatch => {
-  return {
-    changeCart: product => {
-      dispatch(changeCart(product))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withParams(ProductPage))
+export default withParams(ProductPage)

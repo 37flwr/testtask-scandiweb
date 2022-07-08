@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import { changeCart } from '../../../store/actions';
 import { handleAddToCart } from '../../../utils';
+
 import './styles.scss';
 
 class ProductDetails extends Component {
@@ -38,9 +40,18 @@ class ProductDetails extends Component {
                     <span className='product-price-heading'>
                         Price:
                     </span>
-                    <span className='product-price-value'>
-                        12
-                    </span>
+                    <div className='product-price-value'>
+                        <span>
+                            {this.props.product.prices.filter(curr => 
+                                curr.currency.label.toLowerCase() === this.props.currency
+                                )[0].currency.symbol}
+                        </span>
+                        <span>
+                            {this.props.product.prices.filter(curr => 
+                                curr.currency.label.toLowerCase() === this.props.currency
+                                )[0].amount}
+                        </span>
+                    </div>
                 </div>
                 <button 
                     className='add-to-cart-btn'
@@ -58,7 +69,8 @@ class ProductDetails extends Component {
 }
 
 const mapStateToProps = state => ({
-    cart: state.Cart
+    cart: state.Cart,
+    currency: state.Currency.currency
 });
 
 const mapDispatchToProps = dispatch => {
