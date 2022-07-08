@@ -37,7 +37,31 @@ class Cart extends Component {
         }
     }
 
+    handleCountCartTotal(cart) {
+        let currencyLabel = 0;
+        let total = 0;
+
+        const handleCurrentCurrency = (item) => {
+            let amount = 0;
+            
+            item.item.prices.map((curr) => {
+                if (curr.currency.label.toLowerCase() === this.props.currency.currency) {
+                    amount = curr.amount
+                }
+            })
+            console.log(amount);
+
+            return amount
+        }
+
+        cart.map((item) => {
+            total = total + item.qnt * handleCurrentCurrency(item)
+        })
+        return total
+    }
+
     render() {
+        console.log(this.props.cart.cart);
         return (
             <div className='cart' ref={this.wrapperRef}>
                 {handleCountCartItems(this.props.cart.cart) ?
@@ -71,6 +95,13 @@ class Cart extends Component {
                                 <Item item={item}/>
                             )}
                         </div>
+                        <div className='cart-total'>
+                            <span>Total</span>
+
+                            <span>
+                                {this.handleCountCartTotal(this.props.cart.cart)}
+                            </span>
+                        </div>
                     </div>
                 )}
             </div>
@@ -79,7 +110,8 @@ class Cart extends Component {
 }
 
 const mapStateToProps = state => ({
-    cart: state.Cart
+    cart: state.Cart,
+    currency: state.Currency
 });
 
 export default connect(mapStateToProps, null)(Cart)
