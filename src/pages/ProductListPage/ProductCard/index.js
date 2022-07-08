@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import classNames from 'classnames'
+
+import ProductCardContent from './ProductCardContent'
 
 import { changeCart } from '../../../store/actions'
 import { handleAddToCart } from '../../../utils'
@@ -8,13 +11,11 @@ import { handleAddToCart } from '../../../utils'
 import IconCart from '../../../assets/Cart.svg'
 
 import './styles.scss'
-import ProductCardContent from './ProductCardContent'
-import classNames from 'classnames'
 
 class ProductCard extends Component {
     render() {
         return (
-                <div className={classNames('product-card', this.props.inStock && 'active')}>
+            <div className={classNames('product-card', this.props.inStock && 'active')}>
                 {this.props.inStock? 
                     <>
                         <button className='add-to-cart-btn' onClick={() => this.props.changeCart(handleAddToCart(this.props.cart, this.props.item))}>

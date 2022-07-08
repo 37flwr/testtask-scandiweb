@@ -10,10 +10,6 @@ import { handleCategoryFetch } from '../../utils';
 
 import './styles.scss'
 
-function withParams(Component) {
-  return props => <Component {...props} params={useParams()} />;
-}
-
 class ProductListPage extends Component {
     async componentDidMount() {
         const products = await handleCategoryFetch(this.props.params.category.slice(1))
@@ -42,7 +38,7 @@ class ProductListPage extends Component {
                             {this.state.type && capitalizeFirstLetter(this.state.type)}
                         </div>
                         <div className='products-grid'>
-                            {this.state.productsArray?.map((product) => 
+                            {this.state.productsArray?.map((product, idx) => 
                                 <ProductCard
                                     item={product}
                                     id={product.id}
@@ -51,6 +47,7 @@ class ProductListPage extends Component {
                                     prices={product.prices}
                                     inStock={product.inStock}
                                     currency={this.props.currency}
+                                    key={idx}
                                 />
                             )}
                         </div>
@@ -65,8 +62,12 @@ class ProductListPage extends Component {
     }
 }
 
+function withParams(Component) {
+  return props => <Component {...props} params={useParams()} />;
+}
+
 const mapStateToProps = state => ({
     currency: state.Currency.currency
 });
 
-export default connect(mapStateToProps, null)(withParams(ProductListPage))
+export default withParams(connect(mapStateToProps, null)(ProductListPage))

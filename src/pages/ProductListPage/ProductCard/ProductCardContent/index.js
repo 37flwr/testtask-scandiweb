@@ -14,13 +14,18 @@ export default class ProductCardContent extends Component {
                 <span className='product-card-title'>
                     {this.props.title}
                 </span>
-                <span className='product-card-currency'>
-                    {this.props.prices.map((curr) => {
-                        if (curr.currency.label.toLowerCase() === this.props.currency) {
-                            return <div>{curr.currency.symbol} {curr.amount}</div>
-                        }
-                    })}
-                </span>
+                <div className='product-card-currency'>
+                    <span>
+                        {this.props.prices.filter(curr => 
+                            curr.currency.label.toLowerCase() === this.props.currency
+                        )[0].currency.symbol}
+                    </span>
+                    <span>
+                        {this.props.prices.filter(curr => 
+                            curr.currency.label.toLowerCase() === this.props.currency
+                        )[0].amount}
+                    </span>
+                </div>
             </div>
         </>
     )
