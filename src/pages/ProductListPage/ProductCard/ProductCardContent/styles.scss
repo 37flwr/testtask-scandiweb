@@ -1,0 +1,27 @@
+.product-card-img {
+  height: 330px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.product-card-details {
+  display: flex;
+  flex-direction: column;
+
+  span {
+    line-height: 30px;
+  }
+  .product-card-title {
+    color: var(--color-primary);
+    font-size: 18px;
+    font-weight: 300;
+    font-family: "Raleway", sans-serif;
+  }
+
+  .product-card-currency {
+    color: var(--color-primary);
+    font-size: 18px;
+    font-weight: 500;
+    font-family: "Raleway", sans-serif;
+  }
+}

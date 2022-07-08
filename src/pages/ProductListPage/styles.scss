@@ -13,4 +13,11 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 50px;
   }
+
+  .loader-container {
+    height: calc(100vh - 242px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
