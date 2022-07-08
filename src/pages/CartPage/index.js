@@ -1,11 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+
+import Item from './Item'
+
 import './styles.scss'
 
 class CartPage extends Component {
     render() {
         return (
-            <div>{this.props.cart.cart}</div>
+            <section className='cart-page'>
+                <h1 className='cart-page-heading'>
+                    Cart
+                </h1>
+                <div className='cart-line' />
+                {this.props.cart.cart.map((item) => 
+                    <Item item={item} />
+                )}
+            </section>
         )
     }
 }

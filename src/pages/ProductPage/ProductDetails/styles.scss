@@ -47,21 +47,30 @@
         .product-text-attribute {
           height: 45px;
           width: 63px;
+          padding: 0;
+
           display: flex;
           justify-content: center;
           align-items: center;
+
           border: 1px solid var(--color-primary);
+          background-color: var(--color-white);
+
           color: var(--color-primary);
           font-family: "Source Sans Pro", sans-serif;
           font-weight: 400;
           font-size: 16px;
+
           cursor: pointer;
         }
 
         .product-color-attribute {
           height: 32px;
           width: 32px;
+          padding: 0;
+
           border: 1px solid var(--color-primary);
+
           cursor: pointer;
         }
       }
@@ -93,13 +102,16 @@
     .add-to-cart-btn {
       width: 292px;
       height: 52px;
+
+      border: none;
+      background-color: var(--color-selected);
+
       font-family: "Raleway", "sans-serif";
       font-size: 16px;
       font-weight: 600;
       color: var(--color-white);
       text-transform: uppercase;
-      border: none;
-      background-color: var(--color-selected);
+
       cursor: pointer;
     }
   }

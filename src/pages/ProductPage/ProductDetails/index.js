@@ -27,11 +27,11 @@ class ProductDetails extends Component {
                         <div className='product-attribute-list'>
                             {attr.items.map((item, idx) => 
                                 attr.type === 'text' ?
-                                <div key={idx} className='product-text-attribute'>
+                                <button key={idx} className='product-text-attribute'>
                                     {item.value}
-                                </div>
+                                </button>
                                 :
-                                <div className='product-color-attribute' style={{'backgroundColor': item.value}}/>
+                                <button className='product-color-attribute' style={{'backgroundColor': item.value}}/>
                             )}
                         </div>
                     </div>
