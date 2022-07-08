@@ -1,5 +1,6 @@
 .cart {
   position: relative;
+  z-index: 3;
 
   .cart-icon {
     margin-top: 5px;
@@ -56,15 +57,18 @@
       justify-content: space-between;
     }
   }
+}
 
-  .cart-blur {
-    position: fixed;
-    top: 80px;
-    left: 0;
-    width: 100vw;
-    height: calc(100vh - 50px);
-    background-color: #393748;
-    opacity: 0.22;
-    overflow: hidden;
-  }
+.cart-blur {
+  z-index: 2;
+  position: absolute;
+  top: 81px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  background-color: #393748;
+  opacity: 0.22;
+  overflow: hidden;
+  overscroll-behavior: contain;
 }

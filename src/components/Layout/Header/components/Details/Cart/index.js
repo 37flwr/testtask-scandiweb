@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import {  handleCountCartItems } from '../../../../../../utils/cartActions';
+
 import Item from './components/Item';
 import CartQnt from './components/CartQnt';
 import IconCart from '../../../../../../assets/Cart.svg'
-import './styles.scss'
 import CartButton from './components/CartButton';
+
+import {  handleCountCartItems, handleCountCartTotal } from '../../../../../../utils/cartActions';
+
+import './styles.scss'
 
 class Cart extends Component {
     constructor(props) {
@@ -38,38 +41,9 @@ class Cart extends Component {
         }
     }
 
-    handleCountCartTotal(cart) {
-    const countCartTotal = (item) => {
-        let amount = 0;
-        item.item.prices.map((curr) => {
-            if (curr.currency.label.toLowerCase() === this.props.currency.currency) {
-                amount = curr.amount
-            }
-        })
-        return amount
-    }
-
-    const getCurrentCurrency = (cart) => {
-        let currencySymbol = 'UNDF'
-        cart[0].item.prices.map((curr) => {
-            if (curr.currency.label.toLowerCase() === this.props.currency.currency) {
-                currencySymbol = curr.currency.symbol
-            }
-        })
-        return currencySymbol
-    }
-
-    let currencyLabel = getCurrentCurrency(cart);
-    let total = 0;
-
-        cart.map((item) => {
-            total = total + item.qnt * countCartTotal(item)
-        })
-        return {currSymbol: currencyLabel, total: total}
-    }
-
     render() {
         return (
+            <>
             <div className='cart' ref={this.wrapperRef}>
                 {handleCountCartItems(this.props.cart.cart) ?
                     <>
@@ -95,8 +69,6 @@ class Cart extends Component {
                     </Link>
                 }
                 {this.state?.active && (
-                    <>
-                    <div className='cart-blur' />
                     <div className="dropdown-cart-container">
                         <CartQnt />
                         <div className='dropdown-cart-list'>
@@ -107,7 +79,7 @@ class Cart extends Component {
                         <div className='cart-total'>
                             <span><b>Total</b></span>
                             <span>
-                                <b>{this.handleCountCartTotal(this.props.cart.cart).currSymbol}{this.handleCountCartTotal(this.props.cart.cart).total}</b>
+                                <b>{handleCountCartTotal(this.props.cart.cart, this.props.currency).currSymbol}{handleCountCartTotal(this.props.cart.cart, this.props.currency).total}</b>
                             </span>
                         </div>
                         <div className='cart-buttons'>
@@ -123,9 +95,10 @@ class Cart extends Component {
                             />
                         </div>
                     </div>
-                    </>
                 )}
             </div>
+            {this.state?.active && <div className='cart-blur' style={{'height': document.body.clientHeight - 80}} />}
+        </>
         )
     }
 }

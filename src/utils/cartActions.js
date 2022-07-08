@@ -56,4 +56,34 @@ const handleCountCartItems = (cart) => {
     return false
 }
 
-export { handleRemoveFromCart, handleAddToCart, handleCountCartItems }
+const handleCountCartTotal = (cart, currency) => {
+    const countCartTotal = (item) => {
+        let amount = 0;
+        item.item.prices.map((curr) => {
+            if (curr.currency.label.toLowerCase() === currency.currency) {
+                amount = curr.amount
+            }
+        })
+        return amount
+    }
+
+    const getCurrentCurrency = (cart) => {
+        let currencySymbol = 'UNDF'
+        cart[0].item.prices.map((curr) => {
+            if (curr.currency.label.toLowerCase() === currency.currency) {
+                currencySymbol = curr.currency.symbol
+            }
+        })
+        return currencySymbol
+    }
+
+    let currencyLabel = getCurrentCurrency(cart);
+    let total = 0;
+
+    cart.map((item) => {
+        total = total + item.qnt * countCartTotal(item)
+    })
+    return {currSymbol: currencyLabel, total: total.toFixed(2)}
+    }
+
+export { handleRemoveFromCart, handleAddToCart, handleCountCartItems, handleCountCartTotal }
