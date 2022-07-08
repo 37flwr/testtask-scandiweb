@@ -95,6 +95,8 @@ class Cart extends Component {
                     </Link>
                 }
                 {this.state?.active && (
+                    <>
+                    <div className='cart-blur' />
                     <div className="dropdown-cart-container">
                         <CartQnt />
                         <div className='dropdown-cart-list'>
@@ -121,6 +123,7 @@ class Cart extends Component {
                             />
                         </div>
                     </div>
+                    </>
                 )}
             </div>
         )

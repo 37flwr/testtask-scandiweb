@@ -30,7 +30,7 @@
 
   .dropdown-cart-container {
     position: absolute;
-    top: 100%;
+    top: 200%;
     right: -20px;
     z-index: 6;
     width: 325px;
@@ -55,5 +55,16 @@
       display: flex;
       justify-content: space-between;
     }
+  }
+
+  .cart-blur {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 50px);
+    background-color: #393748;
+    opacity: 0.22;
+    overflow: hidden;
   }
 }
