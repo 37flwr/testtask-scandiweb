@@ -15,8 +15,7 @@
     grid-gap: 8px;
 
     .item-attr-text {
-      width: 34px;
-      height: 24px;
+      padding: 3px;
       border: 1px solid var(--color-primary);
       color: var(--color-primary);
       font-family: "Source Sans Pro", "sans-serif";
@@ -31,7 +30,7 @@
   .item-attr-list-color {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 8px;
+    grid-gap: 4px;
 
     .item-attr-color {
       width: 16px;
