@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { useParams } from 'react-router';
 import ApolloClient, { gql } from 'apollo-boost'
 import { connect } from 'react-redux';
-import { changeCart } from '../../store/actions'
+import { changeCart } from '../../store/actions';
+import { handleProductFetch } from '../../utils'
 import './styles.scss'
 
 
@@ -31,64 +32,25 @@ const handleCardChange = (cart, newItem) => {
   return [{qnt: 1, item: newItem}]
 }
 
-const client = new ApolloClient({
-  uri: 'http://localhost:4000'
-});
-
 class ProductPage extends Component {
-  async handleCategoryFetch(value) {
-    const response = await client
-    .query({
-      query: gql`
-        {
-          product(id: "${value}") {
-          id
-          name
-          inStock
-          gallery
-          description
-          category
-          attributes {
-            id
-            name
-            type
-            items {
-              displayValue
-              value
-              id
-            }
-          }
-          prices {
-            currency {
-              label
-              symbol
-            }
-            amount
-          }
-          brand
-          }
-        }
-      `
-    })
-    this.setState({
-      product: response.data.product,
-      mainImg: response.data.product.gallery[0]
-    })
-  }
 
   async componentDidMount() {
+    const product = await handleProductFetch(this.props.params.id.slice(1))
     this.setState({
       type: this.props.params.id.slice(1),
+      product: product,
+      mainImg: product.gallery[0]
     })
-    await this.handleCategoryFetch(this.props.params.id.slice(1))
   }
 
   async componentDidUpdate(prevState) {
     if(prevState.params.id !== this.props.params.id) {
+      const product = await handleProductFetch(this.props.params.id.slice(1))
       this.setState({
-        type: this.props.params.id.slice(1)
+        type: this.props.params.id.slice(1),
+        product: product,
+        mainImg: product.gallery[0]
       })
-      await this.handleCategoryFetch(this.props.params.id.slice(1))
     }
   }
   

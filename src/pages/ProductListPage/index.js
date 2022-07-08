@@ -1,75 +1,34 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { useParams } from 'react-router';
-import ApolloClient, { gql } from 'apollo-boost'
 import { connect } from 'react-redux';
-import { capitalizeFirstLetter } from '../../utils';
+
 import ProductCard from './components/ProductCard';
+
+import { capitalizeFirstLetter } from '../../utils';
+import { handleCategoryFetch } from '../../utils';
+
 import './styles.scss'
 
 function withParams(Component) {
   return props => <Component {...props} params={useParams()} />;
 }
 
-const client = new ApolloClient({
-  uri: 'http://localhost:4000'
-});
-
 class ProductListPage extends Component {
-    async handleCategoryFetch(value) {
-        const response = await client
-        .query({
-            query: gql`
-                {
-                    category(input: {title: "${value}"}) {
-                        name
-                        products {
-                        id
-                        name
-                        inStock
-                        gallery
-                        description
-                        category
-                        attributes {
-                            id
-                            name
-                            type
-                            items {
-                            displayValue
-                            value
-                            id
-                            }
-                        }
-                        prices {
-                            currency {
-                            label
-                            symbol
-                            }
-                            amount
-                        }
-                        brand
-                        }
-                    }
-                }
-            `
-        })
-        this.setState({
-            products: response.data.category.products
-        })
-    }
-
     async componentDidMount() {
+        const products = await handleCategoryFetch(this.props.params.category.slice(1))
         this.setState({
-            type: this.props.params.category.slice(1)
+            type: this.props.params.category.slice(1),
+            products: products,
         })
-        await this.handleCategoryFetch(this.props.params.category.slice(1))
     }
 
     async componentDidUpdate(prevState) {
         if(prevState.params.category !== this.props.params.category) {
+            const products = await handleCategoryFetch(this.props.params.category.slice(1))
             this.setState({
-                type: this.props.params.category.slice(1)
+                type: this.props.params.category.slice(1),
+                products: products,
             })
-            await this.handleCategoryFetch(this.props.params.category.slice(1))
         }
     }
 
