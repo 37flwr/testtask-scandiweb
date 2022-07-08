@@ -4,7 +4,6 @@ import './styles.scss'
 
 class CartPage extends Component {
     render() {
-        console.log(this.props.cart);
         return (
             <div>{this.props.cart.cart}</div>
         )

@@ -1,0 +1,22 @@
+.cart-button {
+  width: 140px;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "Raleway", "sans-serif";
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.unfilled {
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.filled {
+  background-color: var(--color-selected);
+  color: var(--color-white);
+}

@@ -7,6 +7,7 @@ import Item from './components/Item';
 import CartQnt from './components/CartQnt';
 import IconCart from '../../../../../../assets/Cart.svg'
 import './styles.scss'
+import CartButton from './components/CartButton';
 
 class Cart extends Component {
     constructor(props) {
@@ -38,30 +39,36 @@ class Cart extends Component {
     }
 
     handleCountCartTotal(cart) {
-        let currencyLabel = 0;
-        let total = 0;
+    const countCartTotal = (item) => {
+        let amount = 0;
+        item.item.prices.map((curr) => {
+            if (curr.currency.label.toLowerCase() === this.props.currency.currency) {
+                amount = curr.amount
+            }
+        })
+        return amount
+    }
 
-        const handleCurrentCurrency = (item) => {
-            let amount = 0;
-            
-            item.item.prices.map((curr) => {
-                if (curr.currency.label.toLowerCase() === this.props.currency.currency) {
-                    amount = curr.amount
-                }
-            })
-            console.log(amount);
+    const getCurrentCurrency = (cart) => {
+        let currencySymbol = 'UNDF'
+        cart[0].item.prices.map((curr) => {
+            if (curr.currency.label.toLowerCase() === this.props.currency.currency) {
+                currencySymbol = curr.currency.symbol
+            }
+        })
+        return currencySymbol
+    }
 
-            return amount
-        }
+    let currencyLabel = getCurrentCurrency(cart);
+    let total = 0;
 
         cart.map((item) => {
-            total = total + item.qnt * handleCurrentCurrency(item)
+            total = total + item.qnt * countCartTotal(item)
         })
-        return total
+        return {currSymbol: currencyLabel, total: total}
     }
 
     render() {
-        console.log(this.props.cart.cart);
         return (
             <div className='cart' ref={this.wrapperRef}>
                 {handleCountCartItems(this.props.cart.cart) ?
@@ -96,11 +103,22 @@ class Cart extends Component {
                             )}
                         </div>
                         <div className='cart-total'>
-                            <span>Total</span>
-
+                            <span><b>Total</b></span>
                             <span>
-                                {this.handleCountCartTotal(this.props.cart.cart)}
+                                <b>{this.handleCountCartTotal(this.props.cart.cart).currSymbol}{this.handleCountCartTotal(this.props.cart.cart).total}</b>
                             </span>
+                        </div>
+                        <div className='cart-buttons'>
+                            <CartButton 
+                                path='/cart'
+                                text='View bag'
+                                className='unfilled'
+                            />
+                            <CartButton 
+                                path='/checkout'
+                                text='Check out'
+                                className='filled'
+                            />
                         </div>
                     </div>
                 )}

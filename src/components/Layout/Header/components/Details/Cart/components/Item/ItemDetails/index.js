@@ -5,7 +5,6 @@ import './styles.scss'
 
 class ItemDetails extends Component {
     render() {
-        console.log(this.props.currency);
         return (
         <div className='item-details'>
             <div className='item-vitals'>

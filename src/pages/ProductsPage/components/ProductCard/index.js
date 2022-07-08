@@ -32,7 +32,6 @@ const handleCardChange = (cart, newItem) => {
 
 class ProductCard extends Component {
     render() {
-        console.log(this.props.item);
         return (
             <>
                 {this.props.inStock? 

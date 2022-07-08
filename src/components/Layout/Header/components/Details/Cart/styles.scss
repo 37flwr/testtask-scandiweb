@@ -45,5 +45,15 @@
       flex-direction: column;
       gap: 40px;
     }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .cart-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 }

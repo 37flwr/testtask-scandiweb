@@ -74,7 +74,6 @@ class ProductPage extends Component {
     }
 
     render() {
-        console.log(this.state?.products);
         return (
             <section className='product-page'>
                 <div className='product-page-heading'>
