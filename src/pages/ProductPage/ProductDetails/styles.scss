@@ -1,0 +1,101 @@
+.product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .product-vitals {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .product-brand {
+      color: var(--color-primary);
+      font-size: 30px;
+      font-weight: 600;
+      font-family: "Raleway", "sans-serif";
+    }
+
+    .product-title {
+      color: var(--color-primary);
+      font-size: 30px;
+      font-weight: 400;
+      font-family: "Raleway", "sans-serif";
+    }
+  }
+  .product-attributes {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .product-attribute {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .product-attribute-heading {
+        color: var(--color-primary);
+        font-family: "Roboto Condensed", sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .product-attribute-list {
+        display: flex;
+        gap: 12px;
+
+        .product-text-attribute {
+          height: 45px;
+          width: 63px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: 1px solid var(--color-primary);
+          color: var(--color-primary);
+          font-family: "Source Sans Pro", sans-serif;
+          font-weight: 400;
+          font-size: 16px;
+          cursor: pointer;
+        }
+
+        .product-color-attribute {
+          height: 32px;
+          width: 32px;
+          border: 1px solid var(--color-primary);
+          cursor: pointer;
+        }
+      }
+    }
+    .product-price {
+      display: flex;
+      flex-direction: column;
+
+      .product-price-heading {
+        color: var(--color-primary);
+        font-family: "Roboto Condensed", sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .product-price-value {
+        color: var(--color-primary);
+        font-family: "Raleway", "sans-serif";
+        font-weight: 700;
+        font-size: 24px;
+      }
+    }
+    .add-to-cart-btn {
+      width: 292px;
+      height: 52px;
+      font-family: "Raleway", "sans-serif";
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-white);
+      text-transform: uppercase;
+      border: none;
+      background-color: var(--color-selected);
+      cursor: pointer;
+    }
+  }
+}

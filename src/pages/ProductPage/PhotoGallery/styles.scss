@@ -1,0 +1,11 @@
+.product-photo-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  .product-photo {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+  }
+}
