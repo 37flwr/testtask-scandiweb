@@ -4,22 +4,22 @@ import './styles.scss'
 export default class Attributes extends Component {
   render() {
     return (
-        <div className='item-attr-content'>
-            <span>
+        <div className='cart-item-attr-content'>
+            <span className='cart-item-attr-heading'>
                 {this.props.attr.name}:
             </span>
             {this.props.attr.type === 'text' ?
-                <div className='item-attr-list'>
+                <div className='cart-item-attr-list attr-list-text'>
                     {this.props.attr.items.map((item) => 
-                        <div className='item-attr-text'>
+                        <div className='cart-item-attr-text'>
                             {item.value}
                         </div>
                     )}
                 </div>
             :
-                <div className='item-attr-list-color'>
+                <div className='cart-item-attr-list attr-list-color'>
                     {this.props.attr.items.map((item) => 
-                        <div className='item-attr-color' style={{'backgroundColor': item.value}}/>
+                        <div className='cart-item-attr-color' style={{'backgroundColor': item.value}}/>
                     )}
                 </div>
             }

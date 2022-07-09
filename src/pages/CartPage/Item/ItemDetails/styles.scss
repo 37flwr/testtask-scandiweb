@@ -1,0 +1,32 @@
+.cart-item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .cart-item-vitals {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .cart-item-brand {
+      font-family: "Raleway", "sans-serif";
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    .cart-item-name {
+      font-family: "Raleway", "sans-serif";
+      font-size: 30px;
+      font-weight: 400;
+      color: var(--color-primary);
+    }
+  }
+
+  .cart-item-price {
+    font-family: "Raleway", "sans-serif";
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+}

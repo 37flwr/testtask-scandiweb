@@ -6,23 +6,23 @@ import './styles.scss'
 class ItemDetails extends Component {
     render() {
         return (
-        <div className='item-details'>
-            <div className='item-vitals'>
-                <span>
+        <div className='cart-item-details'>
+            <div className='cart-item-vitals'>
+                <span className='cart-item-brand'>
                     {this.props.item.item.brand}
                 </span>
-                <span>
+                <span className='cart-item-name'>
                     {this.props.item.item.name}
                 </span>
             </div>
-            <span className='item-price'>
+            <span className='cart-item-price'>
                 {this.props.item.item.prices.map((curr) => {
                     if (curr.currency.label.toLowerCase() === this.props.currency.currency) {
                         return <>{curr.currency.symbol} {curr.amount}</>
                     }
                 })}
             </span>
-            <div className='item-attr-container'>
+            <div className='cart-item-attr-container'>
                 {this.props.item.item?.attributes?.map((attr) => 
                     <Attributes attr={attr} />
                 )}
