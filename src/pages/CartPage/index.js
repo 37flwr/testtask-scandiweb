@@ -16,6 +16,7 @@ class CartPage extends Component {
                 {this.props.cart.cart.map((item) => 
                     <Item item={item} />
                 )}
+                <div className='cart-line' />
             </section>
         )
     }

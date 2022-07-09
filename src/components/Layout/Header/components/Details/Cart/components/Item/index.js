@@ -10,22 +10,24 @@ class Item extends Component {
     return (
         <div className='dropdown-cart-item'>
             <ItemDetails item={this.props.item} />
-            <div className='cart-item-qnt'>
-                <div className='cart-item-qnt-handler' onClick={() => this.props.changeCart(handleAddToCart(this.props.cart, this.props.item.item))}>
-                    +
-                </div>
-                <span>
-                    {this.props.item.qnt}
-                </span>
-                <div className='cart-item-qnt-handler' onClick={() => this.props.changeCart(handleRemoveFromCart(this.props.cart, this.props.item.item))}>
-                    -
-                </div>
+            <div className='cart-item-right-side'>
+              <div className='cart-item-qnt'>
+                  <div className='cart-item-qnt-handler' onClick={() => this.props.changeCart(handleAddToCart(this.props.cart, this.props.item.item))}>
+                      +
+                  </div>
+                  <span>
+                      {this.props.item.qnt}
+                  </span>
+                  <div className='cart-item-qnt-handler' onClick={() => this.props.changeCart(handleRemoveFromCart(this.props.cart, this.props.item.item))}>
+                      -
+                  </div>
+              </div>
+              <img
+                  src={this.props.item.item.gallery[0]}
+                  alt=""
+                  className='cart-item-photo'
+              />
             </div>
-            <img
-                src={this.props.item.item.gallery[0]}
-                alt=""
-                className='cart-item-photo'
-            />
         </div>
     )
   }

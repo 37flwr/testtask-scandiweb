@@ -31,10 +31,10 @@ class ProductListPage extends Component {
 
     render() {
         return (
-            <section className='product-page'>
+            <section className='product-list-page'>
                 {this.state ?
                     <>
-                        <div className='product-page-heading'>
+                        <div className='product-list-page-heading'>
                             {this.state.type && capitalizeFirstLetter(this.state.type)}
                         </div>
                         <div className='products-grid'>

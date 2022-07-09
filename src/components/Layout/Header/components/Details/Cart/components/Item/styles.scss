@@ -2,23 +2,31 @@
   display: flex;
   justify-content: space-between;
 
-  .cart-item-qnt {
+  .cart-item-right-side {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    gap: 8px;
 
-    .cart-item-qnt-handler {
-      height: 24px;
-      width: 24px;
+    .cart-item-qnt {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      border: 1px solid var(--color-primary);
-    }
-  }
 
-  .cart-item-photo {
-    width: 121px;
+      .cart-item-qnt-handler {
+        height: 24px;
+        width: 24px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border: 1px solid var(--color-primary);
+        cursor: pointer;
+      }
+    }
+
+    .cart-item-photo {
+      width: 121px;
+    }
   }
 }

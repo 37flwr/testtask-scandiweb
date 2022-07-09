@@ -25,12 +25,9 @@
     background-color: var(--color-selected);
     cursor: pointer;
 
-    img {
+    .add-to-cart-img {
       transform: translate(-5%, 10%);
-
-      svg {
-        color: red;
-      }
+      color: var(--color-white);
     }
   }
 

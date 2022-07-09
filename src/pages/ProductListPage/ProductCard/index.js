@@ -8,7 +8,7 @@ import ProductCardContent from './ProductCardContent'
 import { changeCart } from '../../../store/actions'
 import { handleAddToCart } from '../../../utils'
 
-import IconCart from '../../../assets/Cart.svg'
+import {ReactComponent as IconCart } from '../../../assets/Cart.svg'
 
 import './styles.scss'
 
@@ -19,7 +19,7 @@ class ProductCard extends Component {
                 {this.props.inStock? 
                     <>
                         <button className='add-to-cart-btn' onClick={() => this.props.changeCart(handleAddToCart(this.props.cart, this.props.item))}>
-                            <img src={IconCart} alt="Add to cart" />
+                            <IconCart className='add-to-cart-img' />
                         </button>
                         <Link
                             to={`/item:${this.props.id}`}

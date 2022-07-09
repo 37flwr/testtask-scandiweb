@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import Attribute from './Attribute'
+import Attributes from './Attributes'
 import './styles.scss'
 
 class ItemDetails extends Component {
@@ -24,7 +24,7 @@ class ItemDetails extends Component {
             </span>
             <div className='item-attr-container'>
                 {this.props.item.item?.attributes?.map((attr) => 
-                    <Attribute attr={attr} />
+                    <Attributes attr={attr} />
                 )}
             </div>
         </div>

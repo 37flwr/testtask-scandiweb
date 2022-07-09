@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './styles.scss'
 
-export default class Attribute extends Component {
+export default class Attributes extends Component {
   render() {
     return (
         <div className='item-attr-content'>
