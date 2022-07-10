@@ -6,6 +6,7 @@ import Item from './Item'
 import { handleCountCartItems, handleCountCartTotal } from '../../utils'
 
 import './styles.scss'
+import CheckoutLine from './CheckoutLine'
 
 class CartPage extends Component {
     render() {
@@ -23,30 +24,20 @@ class CartPage extends Component {
                         )}
                         <div className='cart-line' />
                         <div className='cart-checkout-part'>
-                            <div className='cart-checkout-line'>
-                                <span className='cart-chechout-title'>
-                                    Tax 21%:
-                                </span>
-                                <span className='cart-checkout-value'>
-                                    {handleCountCartTotal(this.props.cart.cart, this.props.currency).currSymbol}{(handleCountCartTotal(this.props.cart.cart, this.props.currency).total * 0.21).toFixed(2)}
-                                </span>
-                            </div>
-                            <div className='cart-checkout-line'>
-                                <span className='cart-chechout-title'>
-                                    Quantity:
-                                </span>
-                                <span className='cart-checkout-value'>
-                                    {handleCountCartItems(this.props.cart.cart)}
-                                </span>
-                            </div>
-                            <div className='cart-checkout-line'>
-                                <span className='cart-chechout-title'>
-                                    Total:
-                                </span>
-                                <span className='cart-checkout-value'>
-                                    {handleCountCartTotal(this.props.cart.cart, this.props.currency).currSymbol}{handleCountCartTotal(this.props.cart.cart, this.props.currency).total}
-                                </span>
-                            </div>
+                            <CheckoutLine 
+                                label='Tax 21%:'
+                                action={handleCountCartTotal(this.props.cart.cart, this.props.currency).currSymbol}
+                                additionalAction={(handleCountCartTotal(this.props.cart.cart, this.props.currency).total * 0.21).toFixed(2)}
+                            />
+                            <CheckoutLine 
+                                label='Quantity:'
+                                action={handleCountCartItems(this.props.cart.cart)}
+                            />
+                            <CheckoutLine 
+                                label='Total:'
+                                action={handleCountCartTotal(this.props.cart.cart, this.props.currency).currSymbol}
+                                additionalAction={handleCountCartTotal(this.props.cart.cart, this.props.currency).total}
+                            />
                             <button className='cart-checkout-btn'>
                                 Order
                             </button>
