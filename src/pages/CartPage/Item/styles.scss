@@ -38,5 +38,18 @@
   .cart-item-photo {
     width: 200px;
     height: 288px;
+    position: relative;
+
+    .cart-item-main-photo {
+      width: 100%;
+    }
+
+    .cart-item-photo-pickers {
+      display: flex;
+      gap: 8px;
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+    }
   }
 }

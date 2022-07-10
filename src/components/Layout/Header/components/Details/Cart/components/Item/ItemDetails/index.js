@@ -15,13 +15,11 @@ class ItemDetails extends Component {
                     {this.props.item.item.name}
                 </span>
             </div>
-            <span className='item-price'>
-                {this.props.item.item.prices.map((curr) => {
-                    if (curr.currency.label.toLowerCase() === this.props.currency.currency) {
-                        return <>{curr.currency.symbol} {curr.amount}</>
-                    }
-                })}
-            </span>
+            {this.props.item.item.prices.map((curr, idx) => {
+                if (curr.currency.label.toLowerCase() === this.props.currency.currency) {
+                    return <span key={idx} className='item-price'>{curr.currency.symbol} {curr.amount}</span>
+                }
+            })}
             <div className='item-attr-container'>
                 {this.props.item.item?.attributes?.map((attr, idx) => 
                     <Attributes

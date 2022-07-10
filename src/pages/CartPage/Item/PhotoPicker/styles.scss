@@ -1,0 +1,24 @@
+.cart-item-photo-picker {
+  width: 24px;
+  height: 24px;
+  background-color: rgba($color: #000000, $alpha: 0.73);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-white);
+  cursor: pointer;
+
+  .photo-picker-arrow {
+    height: 7px;
+  }
+
+  .picker-backward {
+    transform: rotate(90deg);
+    margin-left: -2px;
+  }
+
+  .picker-forward {
+    transform: rotate(-90deg);
+    margin-right: -2px;
+  }
+}
