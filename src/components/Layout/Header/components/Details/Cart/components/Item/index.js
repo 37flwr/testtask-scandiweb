@@ -18,7 +18,7 @@ class Item extends Component {
                   <span>
                       {this.props.item.qnt}
                   </span>
-                  <div className='cart-item-qnt-handler' onClick={() => this.props.changeCart(handleRemoveFromCart(this.props.cart, this.props.item.item))}>
+                  <div className='cart-item-qnt-handler' onClick={() => this.props.changeCart(handleRemoveFromCart(this.props.cart, this.props.item.item, this.props.handleCloseCart))}>
                       -
                   </div>
               </div>

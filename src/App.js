@@ -18,7 +18,7 @@ export default class App extends Component {
   render() {
   return (
     <ApolloProvider client={client}>
-      <div className="App">
+      <div id="app">
           <Provider store={store}>
             <PersistGate persistor={persistor}>
               <Router>

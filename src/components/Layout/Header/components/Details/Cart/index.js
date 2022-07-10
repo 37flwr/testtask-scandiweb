@@ -20,10 +20,11 @@ class Cart extends Component {
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
+    state = {
+        active: false,
+    }
+
     componentDidMount() {
-        this.setState({
-            active: false,
-        })
         document.addEventListener("mousedown", this.handleClickOutside);
     }
 
@@ -33,11 +34,19 @@ class Cart extends Component {
 
     handleElementClick() {
         this.setState({active: !this.state.active})
+        var app = document.body
+        app.classList.toggle('stop-scrolling')
+    }
+
+    handleCloseCart() {
+        this.setState({active: false})
+        document.body.classList.remove('stop-scrolling')
     }
 
     handleClickOutside(event) {
         if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
             this.setState({active: false})
+            document.body.classList.remove('stop-scrolling')
         }
     }
 
@@ -68,12 +77,12 @@ class Cart extends Component {
                         />
                     </Link>
                 }
-                {this.state?.active && (
-                    <div className="dropdown-cart-container">
+                {this.state.active && (
+                    <div className="dropdown-cart">
                         <CartQnt />
                         <div className='dropdown-cart-list'>
                             {this.props.cart.cart?.map((item) =>
-                                <Item item={item}/>
+                                <Item item={item} handleCloseCart={this.handleCloseCart.bind(this)}/>
                             )}
                         </div>
                         <div className='cart-total'>
@@ -83,21 +92,23 @@ class Cart extends Component {
                             </span>
                         </div>
                         <div className='cart-buttons'>
-                            <CartButton 
+                            <CartButton
                                 path='/cart'
                                 text='View bag'
                                 className='unfilled'
+                                updateState={this.handleCloseCart.bind(this)}
                             />
-                            <CartButton 
+                            <CartButton
                                 path='/checkout'
                                 text='Check out'
                                 className='filled'
+                                updateState={this.handleCloseCart.bind(this)}
                             />
                         </div>
                     </div>
                 )}
             </div>
-            {this.state?.active && <div className='cart-blur' style={{'height': document.body.clientHeight - 80}} />}
+            {this.state?.active && <div className='cart-blur' />}
         </>
         )
     }

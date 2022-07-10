@@ -9,6 +9,7 @@ export default class CartButton extends Component {
         <Link
             to={this.props.path}
             className={classNames('cart-button', this.props.className)}
+            onClick={() => this.props.udpateState()}
         >
             {this.props.text}
         </Link>

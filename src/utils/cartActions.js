@@ -1,4 +1,4 @@
-const handleRemoveFromCart = (cart, newItem) => {
+const handleRemoveFromCart = (cart, newItem, closeCartHandler) => {
     let changed = false
     const currCart = cart.cart
     
@@ -8,6 +8,9 @@ const handleRemoveFromCart = (cart, newItem) => {
             if(item.item.id === newItem.id) {
                 if(currCart[idx].qnt === 1) {
                     currCart.splice(idx, 1)
+                    if(closeCartHandler) {
+                        closeCartHandler()
+                    }
                     return currCart
                 }
                 currCart[idx].qnt -= 1
