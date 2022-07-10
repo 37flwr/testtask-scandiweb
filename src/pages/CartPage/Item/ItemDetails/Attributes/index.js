@@ -10,16 +10,16 @@ export default class Attributes extends Component {
             </span>
             {this.props.attr.type === 'text' ?
                 <div className='cart-item-attr-list attr-list-text'>
-                    {this.props.attr.items.map((item) => 
-                        <div className='cart-item-attr-text'>
+                    {this.props.attr.items.map((item, idx) => 
+                        <div key={idx} className='cart-item-attr-text'>
                             {item.value}
                         </div>
                     )}
                 </div>
             :
                 <div className='cart-item-attr-list attr-list-color'>
-                    {this.props.attr.items.map((item) => 
-                        <div className='cart-item-attr-color' style={{'backgroundColor': item.value}}/>
+                    {this.props.attr.items.map((item, idx) => 
+                        <div key={idx} className='cart-item-attr-color' style={{'backgroundColor': item.value}}/>
                     )}
                 </div>
             }

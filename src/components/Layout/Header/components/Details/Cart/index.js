@@ -81,8 +81,12 @@ class Cart extends Component {
                     <div className="dropdown-cart">
                         <CartQnt />
                         <div className='dropdown-cart-list'>
-                            {this.props.cart.cart?.map((item) =>
-                                <Item item={item} handleCloseCart={this.handleCloseCart.bind(this)}/>
+                            {this.props.cart.cart?.map((item, idx) =>
+                                <Item
+                                    key={idx}
+                                    item={item}
+                                    handleCloseCart={this.handleCloseCart.bind(this)}
+                                />
                             )}
                         </div>
                         <div className='cart-total'>

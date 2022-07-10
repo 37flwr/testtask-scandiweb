@@ -23,8 +23,11 @@ class ItemDetails extends Component {
                 })}
             </span>
             <div className='item-attr-container'>
-                {this.props.item.item?.attributes?.map((attr) => 
-                    <Attributes attr={attr} />
+                {this.props.item.item?.attributes?.map((attr, idx) => 
+                    <Attributes
+                        key={idx}
+                        attr={attr}
+                    />
                 )}
             </div>
         </div>

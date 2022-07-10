@@ -10,7 +10,6 @@ import CheckoutLine from './CheckoutLine'
 
 class CartPage extends Component {
     render() {
-        console.log(this.props.cart.cart);
         return (
             <section className='cart-page'>
                 <h1 className='cart-page-heading'>
@@ -19,8 +18,11 @@ class CartPage extends Component {
                 <div className='cart-line' />
                 {this.props.cart.cart && this.props.cart.cart.length > 0 ? 
                     <>
-                        {this.props.cart.cart.map((item) => 
-                            <Item item={item} />
+                        {this.props.cart.cart.map((item, idx) => 
+                            <Item
+                                key={idx}
+                                item={item}
+                            />
                         )}
                         <div className='cart-line' />
                         <div className='cart-checkout-part'>
