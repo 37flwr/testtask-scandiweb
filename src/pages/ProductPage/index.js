@@ -36,6 +36,7 @@ class ProductPage extends Component {
       mainImg: img
     })
   }
+
   
   render() {
     return (

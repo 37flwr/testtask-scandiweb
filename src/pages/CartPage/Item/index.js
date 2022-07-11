@@ -36,8 +36,6 @@ class Item extends Component {
     }
   }
   render() {
-    console.log(this.props.item.item.gallery);
-    console.log(this.state.mainImg);
     return (
       <>
         <div className='cart-item'>

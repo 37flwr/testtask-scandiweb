@@ -73,6 +73,15 @@
 
           cursor: pointer;
         }
+
+        .attribute-active-text {
+          background-color: black;
+          color: white;
+        }
+
+        .attribute-active-color {
+          border: 1px solid green;
+        }
       }
     }
     .product-price {

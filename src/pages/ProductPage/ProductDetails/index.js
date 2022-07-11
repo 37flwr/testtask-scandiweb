@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -7,7 +8,18 @@ import { handleAddToCart } from '../../../utils';
 import './styles.scss';
 
 class ProductDetails extends Component {
-  render() {
+    getLocationSearch(location) {
+        const attributesArray = location.replaceAll('%20', ' ').slice(1).split('&')
+        return attributesArray
+    }
+
+    setActiveArrtibutes(idx, childIdx) {
+        if(this.props.product.attributes[idx].items[childIdx].value === this.getLocationSearch(window.location.search)[idx].split('=')[1]) {
+            return true
+        } return false
+    }
+    render() {
+    console.log(this.props.product.attributes);
     return (
         <div className='product-details'>
             <div className='product-vitals'>
@@ -25,13 +37,13 @@ class ProductDetails extends Component {
                             {attr.id}:
                         </div>
                         <div className='product-attribute-list'>
-                            {attr.items.map((item, idx) => 
+                            {attr.items.map((item, childIdx) => 
                                 attr.type === 'text' ?
-                                <button key={idx} className='product-text-attribute'>
+                                <button key={childIdx} className={classNames('product-text-attribute', this.setActiveArrtibutes(idx, childIdx) && 'attribute-active-text')}>
                                     {item.value}
                                 </button>
                                 :
-                                <button className='product-color-attribute' style={{'backgroundColor': item.value}}/>
+                                <button key={childIdx} className={classNames('product-color-attribute', this.setActiveArrtibutes(idx, childIdx) && 'attribute-active-color')} style={{'backgroundColor': item.value}}/>
                             )}
                         </div>
                     </div>

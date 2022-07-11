@@ -30,6 +30,7 @@ class ProductListPage extends Component {
     }
 
     render() {
+        console.log(this.state?.productsArray);
         return (
             <section className='product-list-page'>
                 {this.state ?

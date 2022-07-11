@@ -13,7 +13,20 @@ import {ReactComponent as IconCart } from '../../../assets/Cart.svg'
 import './styles.scss'
 
 class ProductCard extends Component {
+    setLocationSearch(item) {
+        let search = '?';
+        item.attributes.map((attribute, idx) => {
+            const value = attribute.type === 'swatch' ? attribute.items[0].value.slice(1).toLowerCase() : attribute.items[0].value
+            search = search + attribute.id.toLowerCase() + '=' + value
+            if(idx !== item.attributes.length-1) {
+                search = search + '&'
+            }
+        })
+        return search
+    }
+
     render() {
+        console.log(this.props.item.attributes);
         return (
             <div className={classNames('product-card', this.props.inStock && 'active')}>
                 {this.props.inStock? 
