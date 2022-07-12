@@ -47,9 +47,6 @@ class ProductPage extends Component {
       <section className='product-page'>
         {this.state.product ?
           <>
-            {this.state.product.attributes?.map((item) => 
-              <AttributesFormContainer initialValues={item} />
-            )}
             <PhotoGallery
               gallery={this.state.product?.gallery}
               onClick={this.updateMainPhoto.bind(this)}

@@ -39,50 +39,6 @@
         font-weight: 600;
         text-transform: uppercase;
       }
-
-      .product-attribute-list {
-        display: flex;
-        gap: 12px;
-
-        .product-text-attribute {
-          height: 45px;
-          width: 63px;
-          padding: 0;
-
-          display: flex;
-          justify-content: center;
-          align-items: center;
-
-          border: 1px solid var(--color-primary);
-          background-color: var(--color-white);
-
-          color: var(--color-primary);
-          font-family: "Source Sans Pro", sans-serif;
-          font-weight: 400;
-          font-size: 16px;
-
-          cursor: pointer;
-        }
-
-        .product-color-attribute {
-          height: 32px;
-          width: 32px;
-          padding: 0;
-
-          border: 1px solid var(--color-primary);
-
-          cursor: pointer;
-        }
-
-        .attribute-active-text {
-          background-color: black;
-          color: white;
-        }
-
-        .attribute-active-color {
-          border: 1px solid green;
-        }
-      }
     }
     .product-price {
       display: flex;
