@@ -39,10 +39,10 @@
   cursor: pointer;
 
   .attribute-color {
-    width: 115%;
-    height: 115%;
+    width: 34px;
+    height: 34px;
 
-    transform: translate(-9%, -9%);
+    transform: translate(-2px, -2px);
   }
 
   .product-radio {
@@ -52,7 +52,3 @@
     }
   }
 }
-
-// .attribute-active-color {
-//   border: 1px solid green;
-// }

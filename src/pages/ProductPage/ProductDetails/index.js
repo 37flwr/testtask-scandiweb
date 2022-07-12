@@ -31,24 +31,17 @@ class ProductDetails extends Component {
                 </span>
             </div>
             <div className='product-attributes'>
-                {this.props.product.attributes.map((attr, idx) => 
+                <AttributesFormContainer initialValues={this.props.product.attributes} />
+                {/* {this.props.product.attributes.map((attr, idx) => 
                     <div key={idx} className='product-attribute'>
                         <div className='product-attribute-heading'>
                             {attr.id}:
                         </div>
                         <div className='product-attribute-list'>
-                            {/* {attr.items.map((item, childIdx) => 
-                                attr.type === 'text' ?
-                                <button key={childIdx} className={classNames('product-text-attribute', this.setActiveArrtibutes(idx, childIdx) && 'attribute-active-text')}>
-                                    {item.value}
-                                </button>
-                                :
-                                <button key={childIdx} className={classNames('product-color-attribute', this.setActiveArrtibutes(idx, childIdx) && 'attribute-active-color')} style={{'backgroundColor': item.value}}/>
-                            )} */}
                             <AttributesFormContainer initialValues={attr}/>
                         </div>
                     </div>
-                )}
+                )} */}
                 <div className='product-price'>
                     <span className='product-price-heading'>
                         Price:

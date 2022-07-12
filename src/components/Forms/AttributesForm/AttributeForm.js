@@ -12,9 +12,16 @@ const renderAttributeFormField = (item, name, type, idx) => (
 class AttributeForm extends Component {
   render() {
     return (
-      <Form className="product-attribute-list" autoComplete="off" ref={this.wrapperRef}>
-        {this.props.values.items.map((item) => renderAttributeFormField(item, this.props.values.name.toLowerCase(), this.props.values.type))}
-        <button id="form-submit" type="submit" className='attribute-form-btn' />
+      <Form className="product-attribute-list" autoComplete="off">
+        {this.props.values.map((attributeGroup) => 
+          <>
+            <h1>{attributeGroup.name}:</h1>
+            {attributeGroup.items.map((item) => renderAttributeFormField(item, attributeGroup.name.toLowerCase(), attributeGroup.type))}
+          </>
+        )}
+        <button id="form-submit" type="submit" className='attribute-form-btn'>
+          Add to cart
+        </button>
       </Form>
     )
   }

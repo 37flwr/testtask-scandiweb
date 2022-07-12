@@ -5,7 +5,6 @@ import './styles.scss';
 
 export default class AttributeFormField extends Component {
   render() {
-    console.log(this.props);
     return (
       this.props.type === 'text' ?
       <label className='product-text-attribute'>

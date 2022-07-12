@@ -7,7 +7,6 @@ import { changeCurrency } from '../../../store/actions'
 class AttributesFormContainer extends Component {
     constructor(props) {
         super(props)
-        console.log();
         this.initialValues = {}
     }
 
@@ -16,11 +15,12 @@ class AttributesFormContainer extends Component {
     }
 
     componentDidMount() {
-        this.setInitialValues(this.props.initialValues.name.toLowerCase(), this.props.initialValues.items[0].value)
+        this.props.initialValues.map((attributeGroup) => {
+            this.setInitialValues(attributeGroup.name.toLowerCase(), attributeGroup.items[0].value)
+        })
     }
 
     render() {
-        console.log(this.props.initialValues);
         return (
             <Formik
                 enableReinitialize
