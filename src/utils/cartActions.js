@@ -43,10 +43,10 @@ const handleAddToCart = (cart, newItem) => {
                 item: newItem
             })
             return currCart
-            }
-            return currCart
         }
-        return [{qnt: 1, item: newItem}]
+        return currCart
+    }
+    return [{qnt: 1, item: newItem}]
 }
 
 const handleCountCartItems = (cart) => {

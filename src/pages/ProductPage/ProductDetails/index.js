@@ -32,16 +32,6 @@ class ProductDetails extends Component {
             </div>
             <div className='product-attributes'>
                 <AttributesFormContainer initialValues={this.props.product.attributes} />
-                {/* {this.props.product.attributes.map((attr, idx) => 
-                    <div key={idx} className='product-attribute'>
-                        <div className='product-attribute-heading'>
-                            {attr.id}:
-                        </div>
-                        <div className='product-attribute-list'>
-                            <AttributesFormContainer initialValues={attr}/>
-                        </div>
-                    </div>
-                )} */}
                 <div className='product-price'>
                     <span className='product-price-heading'>
                         Price:

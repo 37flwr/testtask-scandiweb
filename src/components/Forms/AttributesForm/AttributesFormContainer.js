@@ -29,7 +29,7 @@ class AttributesFormContainer extends Component {
                     console.log(form);
                 }}
                 >
-                    <AttributeForm values={this.props.initialValues} />
+                    {({values}) => <AttributeForm values={values} initialValues={this.props.initialValues} />}
             </Formik>
         )
     }

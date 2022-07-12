@@ -10,16 +10,26 @@ const renderAttributeFormField = (item, name, type, idx) => (
 );
 
 class AttributeForm extends Component {
+  componentDidUpdate(prevProps) {
+    if(prevProps.values !== this.props.values) {
+      this.handleValuesUpdate();
+    }
+  }
+  handleValuesUpdate() {
+    document.getElementById('attribute-form-submit').click()
+  }
   render() {
     return (
-      <Form className="product-attribute-list" autoComplete="off">
-        {this.props.values.map((attributeGroup) => 
-          <>
-            <h1>{attributeGroup.name}:</h1>
-            {attributeGroup.items.map((item) => renderAttributeFormField(item, attributeGroup.name.toLowerCase(), attributeGroup.type))}
-          </>
+      <Form className="product-attributes-container" autoComplete="off">
+        {this.props.initialValues.map((attributeGroup) => 
+          <div className='product-attribute'>
+            <span className='product-attribute-heading'>{attributeGroup.name}:</span>
+            <div className='product-attribute-container'>
+              {attributeGroup.items.map((item) => renderAttributeFormField(item, attributeGroup.name.toLowerCase(), attributeGroup.type))}
+            </div>
+          </div>
         )}
-        <button id="form-submit" type="submit" className='attribute-form-btn'>
+        <button id="attribute-form-submit" type="submit" className='attribute-form-btn'>
           Add to cart
         </button>
       </Form>

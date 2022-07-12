@@ -27,19 +27,6 @@
     flex-direction: column;
     gap: 15px;
 
-    .product-attribute {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-
-      .product-attribute-heading {
-        color: var(--color-primary);
-        font-family: "Roboto Condensed", sans-serif;
-        font-size: 18px;
-        font-weight: 600;
-        text-transform: uppercase;
-      }
-    }
     .product-price {
       display: flex;
       flex-direction: column;
