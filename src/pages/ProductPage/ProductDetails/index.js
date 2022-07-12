@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import AttributesFormContainer from '../../../components/Forms/AttributesForm/AttributesFormContainer';
 
 import { changeCart } from '../../../store/actions';
 import { handleAddToCart } from '../../../utils';
@@ -19,7 +20,6 @@ class ProductDetails extends Component {
         } return false
     }
     render() {
-    console.log(this.props.product.attributes);
     return (
         <div className='product-details'>
             <div className='product-vitals'>
@@ -37,14 +37,15 @@ class ProductDetails extends Component {
                             {attr.id}:
                         </div>
                         <div className='product-attribute-list'>
-                            {attr.items.map((item, childIdx) => 
+                            {/* {attr.items.map((item, childIdx) => 
                                 attr.type === 'text' ?
                                 <button key={childIdx} className={classNames('product-text-attribute', this.setActiveArrtibutes(idx, childIdx) && 'attribute-active-text')}>
                                     {item.value}
                                 </button>
                                 :
                                 <button key={childIdx} className={classNames('product-color-attribute', this.setActiveArrtibutes(idx, childIdx) && 'attribute-active-color')} style={{'backgroundColor': item.value}}/>
-                            )}
+                            )} */}
+                            <AttributesFormContainer initialValues={attr}/>
                         </div>
                     </div>
                 )}

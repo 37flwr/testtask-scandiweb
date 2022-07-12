@@ -4,12 +4,16 @@ import { useParams } from 'react-router';
 import PhotoGallery from './PhotoGallery';
 import ProductDetails from './ProductDetails';
 import Loader from '../../components/Loader';
+import AttributesFormContainer from '../../components/Forms/AttributesForm/AttributesFormContainer';
 
 import { handleProductFetch } from '../../utils'
 
 import './styles.scss'
 
 class ProductPage extends Component {
+  state = {
+    product: null,
+  }
 
   async componentDidMount() {
     const product = await handleProductFetch(this.props.params.id.slice(1))
@@ -41,8 +45,11 @@ class ProductPage extends Component {
   render() {
     return (
       <section className='product-page'>
-        {this.state ?
+        {this.state.product ?
           <>
+            {this.state.product.attributes?.map((item) => 
+              <AttributesFormContainer initialValues={item} />
+            )}
             <PhotoGallery
               gallery={this.state.product?.gallery}
               onClick={this.updateMainPhoto.bind(this)}
