@@ -1,4 +1,8 @@
 .product-attribute-list {
   display: flex;
   gap: 12px;
+
+  .attribute-form-btn {
+    display: none;
+  }
 }

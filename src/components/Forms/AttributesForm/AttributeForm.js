@@ -14,7 +14,7 @@ class AttributeForm extends Component {
     return (
       <Form className="product-attribute-list" autoComplete="off" ref={this.wrapperRef}>
         {this.props.values.items.map((item) => renderAttributeFormField(item, this.props.values.name.toLowerCase(), this.props.values.type))}
-        <button id="form-submit" type="submit" className='attribute-form-btn'>11</button>
+        <button id="form-submit" type="submit" className='attribute-form-btn' />
       </Form>
     )
   }

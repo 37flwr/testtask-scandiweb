@@ -5,9 +5,10 @@ import './styles.scss';
 
 export default class AttributeFormField extends Component {
   render() {
+    console.log(this.props);
     return (
-      <label className='attribute-cont'>
-
+      this.props.type === 'text' ?
+      <label className='product-text-attribute'>
         <Field
           name={this.props.name}
           id={this.props.item.id.toLowerCase()}
@@ -15,9 +16,20 @@ export default class AttributeFormField extends Component {
           value={this.props.item.value}
           className='product-radio'
         />
-        <span className='asd'>
+        <div className='attribute-text'>
             {this.props.item.value}
-        </span>
+        </div>
+      </label>
+      :
+      <label className='product-color-attribute' style={{'backgroundColor': this.props.item.value}}>
+        <Field
+          name={this.props.name}
+          id={this.props.item.id.toLowerCase()}
+          type='radio'
+          value={this.props.item.value}
+          className='product-radio'
+        />
+        <div className='attribute-color' />
       </label>
     )
   }
