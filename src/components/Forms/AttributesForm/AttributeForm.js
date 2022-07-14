@@ -21,7 +21,7 @@ class AttributeForm extends Component {
   render() {
     return (
       <Form className="product-attributes-container" autoComplete="off">
-        {this.props.initialValues.map((attributeGroup) => 
+        {this.props.initialValues?.map((attributeGroup) => 
           <div className='product-attribute'>
             <span className='product-attribute-heading'>{attributeGroup.name}:</span>
             <div className='product-attribute-container'>

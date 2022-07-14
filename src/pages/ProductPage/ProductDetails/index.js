@@ -23,7 +23,7 @@ class ProductDetails extends Component {
     }
 
     checkForPoductInCart() {
-        if(this.props.cart.cart.filter(item => item.item.id === this.props.product.id).length > 0) {
+        if(this.props.cart.cart?.filter(item => item.item.id === this.props.product.id).length > 0) {
             return true
         } 
         return false
@@ -42,7 +42,7 @@ class ProductDetails extends Component {
             </div>
             <div className='product-attributes'>
                 <AttributesFormContainer
-                    initialValues={this.props.product.attributes}
+                    values={this.props.product.attributes}
                     handleSubmit={this.setAttributes.bind(this)}
                     atCart={this.checkForPoductInCart()} />
                 <div className='product-price'>
