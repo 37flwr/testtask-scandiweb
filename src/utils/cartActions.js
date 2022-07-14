@@ -25,28 +25,34 @@ const handleRemoveFromCart = (cart, newItem, closeCartHandler) => {
     }
 }
 
-const handleAddToCart = (cart, newItem) => {
+const handleAddToCart = (cart, newItem, attributes) => {
     const currCart = cart.cart
-        if(currCart) {
-            let changed = false
-            currCart.map((item, idx) => 
-            {
-                if(item.item.id === newItem.id) {
+
+    if(currCart) {
+        let changed = false
+
+        currCart.map((item, idx) => {
+            if(item.item.id === newItem.id) {
                 currCart[idx].qnt += 1
-                changed = true
+                if (item.attributes !== attributes) {
+                    currCart[idx].attributes = attributes
                 }
+                changed = true
             }
-            )
-            if(!changed) {
+        })
+
+        if(!changed) {
             currCart.push({
                 qnt: 1,
+                attributes,
                 item: newItem
             })
-            return currCart
         }
+
         return currCart
     }
-    return [{qnt: 1, item: newItem}]
+
+    return [{qnt: 1, attributes, item: newItem}]
 }
 
 const handleCountCartItems = (cart) => {

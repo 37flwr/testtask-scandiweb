@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { useParams } from 'react-router';
+import { connect } from 'react-redux';
 
 import PhotoGallery from './PhotoGallery';
 import ProductDetails from './ProductDetails';
 import Loader from '../../components/Loader';
-import AttributesFormContainer from '../../components/Forms/AttributesForm/AttributesFormContainer';
 
-import { handleProductFetch } from '../../utils'
+import { handleProductFetch } from '../../utils';
 
 import './styles.scss'
 

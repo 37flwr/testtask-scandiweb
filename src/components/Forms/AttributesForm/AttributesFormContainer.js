@@ -18,19 +18,25 @@ class AttributesFormContainer extends Component {
         this.props.initialValues.map((attributeGroup) => {
             this.setInitialValues(attributeGroup.name.toLowerCase(), attributeGroup.items[0].value)
         })
+        this.props.handleSubmit(this.initialValues)
     }
 
     render() {
         return (
-            <Formik
-                enableReinitialize
-                initialValues={this.initialValues}
-                onSubmit={(form) => {
-                    console.log(form);
-                }}
-                >
-                    {({values}) => <AttributeForm values={values} initialValues={this.props.initialValues} />}
-            </Formik>
+            this.props.atCart ?
+                <div>
+                    1
+                </div>
+                :
+                <Formik
+                    enableReinitialize
+                    initialValues={this.initialValues}
+                    onSubmit={(form) => {
+                        this.props.handleSubmit(form)
+                    }}
+                    >
+                        {({values}) => <AttributeForm values={values} initialValues={this.props.initialValues} />}
+                </Formik>
         )
     }
 }
