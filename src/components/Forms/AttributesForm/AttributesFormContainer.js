@@ -10,7 +10,7 @@ class AttributesFormContainer extends Component {
             this.initialValues = this.props.initialValues
         } else {
             this.initialValues = {}
-            this.props.values.map((attributeGroup) => {
+            this.props.values?.map((attributeGroup) => {
                 this.setInitialValues(attributeGroup.name.toLowerCase(), attributeGroup.items[0].value)
             })
         }

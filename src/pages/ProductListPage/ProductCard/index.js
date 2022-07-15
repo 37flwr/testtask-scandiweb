@@ -25,12 +25,21 @@ class ProductCard extends Component {
         return search
     }
 
+    setAttributes(attributes) {
+        const attributesOutput = {}
+        attributes.map((attrGroup) => {
+            attributesOutput[attrGroup.name.toLowerCase()] = attrGroup.items[0].value
+        })
+        return attributesOutput
+    }
+
     render() {
+        console.log(this.props.item.attributes);
         return (
             <div className={classNames('product-card', this.props.inStock && 'active')}>
                 {this.props.inStock? 
                     <>
-                        <button className='add-to-cart-btn' onClick={() => this.props.changeCart(handleAddToCart(this.props.cart, this.props.item))}>
+                        <button className='add-to-cart-btn' onClick={() => this.props.changeCart(handleAddToCart(this.props.cart, this.props.item, this.setAttributes(this.props.item.attributes)))}>
                             <IconCart className='add-to-cart-img' />
                         </button>
                         <Link

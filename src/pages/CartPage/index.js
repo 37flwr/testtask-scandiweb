@@ -9,6 +9,14 @@ import './styles.scss'
 import CheckoutLine from './CheckoutLine'
 
 class CartPage extends Component {
+    getAttributesForCheckout(attributes) {
+        let output = ''
+        for (const key in attributes) {
+            output = output + key[0].toUpperCase() + key.slice(1) + ': ' + attributes[key] + '\n';
+        }
+        return output
+    }
+
     render() {
         return (
             <section className='cart-page'>
@@ -40,7 +48,18 @@ class CartPage extends Component {
                                 action={handleCountCartTotal(this.props.cart.cart, this.props.currency).currSymbol}
                                 additionalAction={handleCountCartTotal(this.props.cart.cart, this.props.currency).total}
                             />
-                            <button className='cart-checkout-btn'>
+                            <button
+                                className='cart-checkout-btn'
+                                onClick={() => {
+                                    let res = `You ordered:\n\n`
+
+                                    this.props.cart.cart.map((item) => {
+                                        res = res + item.qnt + ' ' + item.item.name + ' ' + item.item.brand + '\n' + this.getAttributesForCheckout(item.attributes) + '\n'
+                                    })
+
+                                    res = res + 'Total: ' + handleCountCartTotal(this.props.cart.cart, this.props.currency).currSymbol + handleCountCartTotal(this.props.cart.cart, this.props.currency).total
+                                    alert(res);
+                                }}>
                                 Order
                             </button>
                         </div>

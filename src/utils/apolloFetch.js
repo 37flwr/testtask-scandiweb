@@ -16,6 +16,16 @@ const handleCategoryFetch = async (value) => {
                     name
                     inStock
                     gallery
+                    attributes {
+                      id
+                      name
+                      type
+                      items {
+                        displayValue
+                        value
+                        id
+                      }
+                    }
                     prices {
                       currency {
                       label
