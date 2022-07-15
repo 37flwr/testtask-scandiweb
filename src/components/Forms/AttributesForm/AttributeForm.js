@@ -4,6 +4,7 @@ import { Form } from 'formik';
 import { AttributeFormField } from '../../Formik/Fields'
 
 import './styles.scss';
+import classNames from 'classnames';
 
 const renderAttributeFormField = (item, name, type, idx) => (
   <AttributeFormField key={item.id} item={item} type={type} name={name} />
@@ -19,14 +20,15 @@ class AttributeForm extends Component {
   handleValuesUpdate() {
     document.getElementById(`attribute-form-submit-` + this.props.itemId).click()
   }
-  
+
   render() {
     return (
+      <>
       <Form className="product-attributes-container" autoComplete="off">
         {this.props.initialValues?.map((attributeGroup) => 
           <div className='product-attribute' key={attributeGroup.name.toLowerCase()}>
-            <span className='product-attribute-heading'>{attributeGroup.name}:</span>
-            <div className='product-attribute-container'>
+            <span className={classNames('product-attribute-heading', this.props.type === 'dropdown' && 'attribute-dropdown-heading')}>{attributeGroup.name}:</span>
+            <div className={classNames('product-attribute-container', this.props.type === 'dropdown' && 'dropdown-type')}>
               {attributeGroup.items.map((item) => renderAttributeFormField(item, attributeGroup.name.toLowerCase(), attributeGroup.type))}
             </div>
           </div>
@@ -35,6 +37,7 @@ class AttributeForm extends Component {
           Add to cart
         </button>
       </Form>
+      </>
     )
   }
 }

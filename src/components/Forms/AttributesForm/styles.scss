@@ -20,9 +20,42 @@
       text-transform: uppercase;
     }
 
+    .attribute-dropdown-heading {
+      font-family: "Raleway", "sans-serif";
+      font-size: 14px;
+      font-weight: 400;
+      text-transform: none;
+    }
+
     .product-attribute-container {
       display: flex;
       gap: 10px;
+    }
+
+    .dropdown-type {
+      gap: 8px;
+
+      .product-text-attribute {
+        height: 24px;
+        width: 24px;
+        padding: 0;
+
+        .attribute-text {
+          font-size: 14px;
+        }
+      }
+
+      .product-color-attribute {
+        height: 16px;
+        width: 16px;
+
+        .attribute-color {
+          width: 18px;
+          height: 18px;
+
+          transform: translate(-2px, -2px);
+        }
+      }
     }
   }
 }

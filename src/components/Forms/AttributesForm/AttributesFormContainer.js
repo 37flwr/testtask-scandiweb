@@ -34,7 +34,14 @@ class AttributesFormContainer extends Component {
                         this.props.handleSubmit(form)
                     }}
                     >
-                        {({values}) => <AttributeForm values={values} initialValues={this.props.values} itemId={this.props.itemId} />}
+                        {({values}) => 
+                            <AttributeForm
+                                values={values}
+                                initialValues={this.props.values}
+                                itemId={this.props.itemId}
+                                type={this.props.type}
+                            />
+                        }
                 </Formik>
         )
     }

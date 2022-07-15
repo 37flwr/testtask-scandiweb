@@ -27,6 +27,7 @@ class ItemDetails extends Component {
                     initialValues={this.props.item.attributes}
                     values={this.props.item.item.attributes}
                     itemId={this.props.item.item.id}
+                    type='dropdown'
                     handleSubmit={(vals) => this.props.changeCart(handleChangeAttributes(vals, this.props.item.item, this.props.cart))}
                 />
             </div>
