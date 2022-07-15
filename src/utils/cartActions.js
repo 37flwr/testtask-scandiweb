@@ -34,9 +34,6 @@ const handleAddToCart = (cart, newItem, attributes) => {
         currCart.map((item, idx) => {
             if(item.item.id === newItem.id) {
                 currCart[idx].qnt += 1
-                if (item.attributes !== attributes) {
-                    currCart[idx].attributes = attributes
-                }
                 changed = true
             }
         })
