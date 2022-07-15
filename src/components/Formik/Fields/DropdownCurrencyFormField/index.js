@@ -7,7 +7,6 @@ import './styles.scss';
 
 class DropdownCurrencyFormField extends Component {
     render() {
-        console.log(this.props);
         return (
             <div className={classNames(
                 'dropdown-currency-input-container', 

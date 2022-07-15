@@ -31,7 +31,6 @@ class AttributesFormContainer extends Component {
     }
 
     render() {
-        console.log(this.props.atCart);
         return (
             <>
                 <Formik

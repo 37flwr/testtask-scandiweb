@@ -68,7 +68,6 @@ class CurrencyForm extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <Form className="dropdown-currency-form" autoComplete="off" ref={this.wrapperRef}>
         <div
