@@ -55,6 +55,19 @@ const handleAddToCart = (cart, newItem, attributes) => {
     return [{qnt: 1, attributes, item: newItem}]
 }
 
+const handleChangeAttributes = (attributes, item, cart) => {
+    const currCart = cart.cart
+
+    currCart.map((cartItem, idx) => {
+        if(cartItem.item.id === item.id) {
+            currCart[idx].attributes = attributes
+            return true
+        }
+    })
+
+    return currCart
+}
+
 const handleCountCartItems = (cart) => {
     let i = 0;
     cart?.map((item) => i = i + item.qnt)
@@ -95,4 +108,4 @@ const handleCountCartTotal = (cart, currency) => {
     return {currSymbol: currencyLabel, total: total.toFixed(2)}
     }
 
-export { handleRemoveFromCart, handleAddToCart, handleCountCartItems, handleCountCartTotal }
+export { handleRemoveFromCart, handleAddToCart, handleCountCartItems, handleCountCartTotal, handleChangeAttributes }

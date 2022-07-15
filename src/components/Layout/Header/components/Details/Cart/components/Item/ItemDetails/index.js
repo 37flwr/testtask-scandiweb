@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import AttributesFormContainer from '../../../../../../../../Forms/AttributesForm/AttributesFormContainer'
-import Attributes from './Attributes'
+import { handleChangeAttributes } from '../../../../../../../../../utils'
+import { changeCart } from '../../../../../../../../../store/actions';
 import './styles.scss'
 
 class ItemDetails extends Component {
     render() {
-        console.log(this.props.item);
         return (
         <div className='item-details'>
             <div className='item-vitals'>
@@ -23,17 +23,12 @@ class ItemDetails extends Component {
                 }
             })}
             <div className='item-attr-container'>
-
-                {/* {this.props.item.attributes?.map((attr, idx) => 
-                    // <Attributes
-                    //     key={idx}
-                    //     attr={attr}
-                    // />
-                    )} */}
-                    <AttributesFormContainer
-                        initialValues={this.props.item.attributes}
-                        values={this.props.item.item.attributes}
-                    />
+                <AttributesFormContainer
+                    initialValues={this.props.item.attributes}
+                    values={this.props.item.item.attributes}
+                    itemId={this.props.item.item.id}
+                    handleSubmit={(vals) => this.props.changeCart(handleChangeAttributes(vals, this.props.item.item, this.props.cart))}
+                />
             </div>
         </div>
     )
@@ -45,4 +40,12 @@ const mapStateToProps = state => ({
     cart: state.Cart
 });
 
-export default connect(mapStateToProps, null)(ItemDetails)
+const mapDispatchToProps = dispatch => {
+  return {
+    changeCart: product => {
+      dispatch(changeCart(product))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemDetails)
