@@ -16,17 +16,24 @@ class AttributesFormContainer extends Component {
         }
     }
 
+    componentDidMount() {
+        this.setState({
+            formBlur: this.getFormHeight()
+        })
+    }
+
     setInitialValues(propertyName, baseValue) {
         this.initialValues[propertyName] = baseValue
     }
 
+    getFormHeight() {
+        return document.getElementById(this.props.itemId)?.offsetHeight;
+    }
+
     render() {
+        console.log(this.props.atCart);
         return (
-            this.props.atCart ?
-                <div>
-                    1
-                </div>
-                :
+            <>
                 <Formik
                     enableReinitialize
                     initialValues={this.initialValues}
@@ -40,9 +47,12 @@ class AttributesFormContainer extends Component {
                                 initialValues={this.props.values}
                                 itemId={this.props.itemId}
                                 type={this.props.type}
+                                atCart={this.props.atCart}
                             />
                         }
                 </Formik>
+                {this.props.atCart && <div className='attributes-form-blur' style={{'height': this.state?.formBlur}}/>}
+            </>
         )
     }
 }

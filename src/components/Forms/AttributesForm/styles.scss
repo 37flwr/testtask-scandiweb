@@ -32,6 +32,10 @@
       gap: 10px;
     }
 
+    .form-disabled {
+      opacity: 0.6;
+    }
+
     .dropdown-type {
       gap: 8px;
 
@@ -58,4 +62,12 @@
       }
     }
   }
+}
+
+.attributes-form-blur {
+  position: absolute;
+  top: 3px;
+  width: 100%;
+  z-index: 2;
+  opacity: 0;
 }

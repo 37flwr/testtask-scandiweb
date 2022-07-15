@@ -43,6 +43,8 @@ class ProductDetails extends Component {
             <div className='product-attributes'>
                 <AttributesFormContainer
                     values={this.props.product.attributes}
+                    initialValues={this.props.cart.cart?.filter(item => item.item.id === this.props.product.id)[0]?.attributes}
+                    itemId={this.props.product.id}
                     handleSubmit={this.setAttributes.bind(this)}
                     atCart={this.checkForPoductInCart()} />
                 <div className='product-price'>

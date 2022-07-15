@@ -34,7 +34,6 @@ class ProductCard extends Component {
     }
 
     render() {
-        console.log(this.props.item.attributes);
         return (
             <div className={classNames('product-card', this.props.inStock && 'active')}>
                 {this.props.inStock? 
