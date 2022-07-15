@@ -1,4 +1,4 @@
-import DropdownFormField from "./DropdownFormField";
+import DropdownCurrencyFormField from "./DropdownCurrencyFormField";
 import AttributeFormField from "./AttributeFormField";
 
-export { DropdownFormField, AttributeFormField }
+export { DropdownCurrencyFormField, AttributeFormField }

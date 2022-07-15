@@ -1,82 +1,51 @@
-import React, { Component } from 'react'
+import { Component, createRef } from 'react'
 import { connect } from 'react-redux';
 import { Form } from 'formik';
 import classNames from 'classnames';
-import ApolloClient, { gql } from 'apollo-boost';
-
-import { DropdownFormField } from '../../Formik/Fields'
-
-import { formatCurrency } from '../../../utils';
+import { DropdownCurrencyFormField } from '../../Formik/Fields'
+import { handleCurrenciesFetch } from '../../../utils';
 import IconArrow from '../../../assets/Arrow.svg'
 
 import './styles.scss';
 
-const client = new ApolloClient({
-  uri: 'http://localhost:4000'
-});
-
-const mapStateToProps = state => ({
-    currency: state.Currency
-});
-
-const renderDropdownFormField = ({ show, ...fieldProps }) => (
-  <DropdownFormField key={fieldProps.value} {...fieldProps} />
+const renderDropdownCurrencyFormField = ({ ...fieldProps }, idx) => (
+  <DropdownCurrencyFormField key={idx} {...fieldProps} />
 );
 
 class CurrencyForm extends Component {
   constructor(props) {
     super(props)
 
-    this.wrapperRef = React.createRef();
+    this.wrapperRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
-  // lifecycles
-  componentDidMount() {
-    this.setState({
-      active: false,
-      currencies: null,
-    })
+  state = {
+    active: false,
+    currencies: null
+  }
+
+  // Lifecycles
+  async componentDidMount() {
     document.addEventListener("mousedown", this.handleClickOutside);
-    this.handleCurrenciesFetch()
+    this.setState({
+      currencies: await handleCurrenciesFetch()
+    })
   }
 
   componentWillUnmount() {
     document.removeEventListener("mousedown", this.handleClickOutside);
   }
-
+  
   componentDidUpdate(prevProps) {
     if (prevProps.values?.currency !== this.props.values?.currency) {
       this.handleValuesUpdate();
     }
   }
 
-  // handlers
-  async handleCurrenciesFetch() {
-    const response = await client
-        .query({
-            query: gql`
-                {
-                    currencies {
-                        label
-                        symbol
-                    }
-                }
-            `
-        })
-    response.data.currencies.map(item => {
-      item.name = 'currency'
-      item.show = true
-      item.value = item.label.toLowerCase()
-      item.type = 'radio'
-    })
-    this.setState({
-        currencies: response.data.currencies
-    })
-  }
-
+  // Handlers
   handleValuesUpdate() {
-    document.getElementById('form-submit').click()
+    document.getElementById('dropdown-currency-form-submit').click()
     this.setState({active: false})
   }
 
@@ -90,30 +59,44 @@ class CurrencyForm extends Component {
     }
   }
 
+  renderFormLabel(currency) {
+    const currencyData = this.state.currencies.filter(item => item.label.toLowerCase() === currency)[0]
+    if(currencyData) {
+      return currencyData.symbol
+    }
+    return 'UNDF' 
+  }
+
   render() {
+    console.log(this.props);
     return (
-      <Form className="dropdown-form" autoComplete="off" ref={this.wrapperRef}>
+      <Form className="dropdown-currency-form" autoComplete="off" ref={this.wrapperRef}>
         <div
-          className={classNames("dropdown-value", this.state?.active && "dropdown-active")}
+          className="dropdown-currency-form-value"
           onClick={() => this.handleElementClick()}
         >
-          <label className="dropdown-value-data">{formatCurrency(this.props.values?.currency)}</label>
+          <label>
+            {this.state.currencies && this.renderFormLabel(this.props.values.currency)}
+          </label>
           <img
             src={IconArrow}
-            id="dropdown-arrow"
-            alt={`Show ${this.state?.active ? "less" : "more"}`}
-            className={classNames("dropdown-arrow", this.state?.active && "active")}
+            alt={`Show ${this.state.active ? "less" : "more"}`}
+            className={classNames("arrow-icon", this.state.active && "active")}
           />
         </div>
-        {this.state?.active && (
-          <div className="dropdown-fields-container">
-            {this.state.currencies.map(renderDropdownFormField)}
+        {this.state.active && (
+          <div className="dropdown-currency-form-container">
+            {this.state.currencies?.map(renderDropdownCurrencyFormField)}
           </div>
         )}
-        <button id="form-submit" type="submit" className="dropdown-submit" />
+        <button id="dropdown-currency-form-submit" type="submit" />
       </Form>
     )
   }
 }
+
+const mapStateToProps = state => ({
+    currency: state.Currency
+});
 
 export default connect(mapStateToProps, null)(CurrencyForm)

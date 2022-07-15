@@ -8,7 +8,7 @@ class CurrencyFormContainer extends Component {
     constructor(props) {
         super(props)
         this.initialValues = {
-            currency: this.props.currency?.currency,
+            currency: this.props.currency?.currency
         }
     }
 
@@ -20,7 +20,7 @@ class CurrencyFormContainer extends Component {
                 onSubmit={(form) => {
                     this.props.changeCurrency(form)
                 }}
-                >
+            >
                 {({values}) => <CurrencyForm values={values} />}
             </Formik>
         )

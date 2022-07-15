@@ -1,53 +1,53 @@
-import ApolloClient, { gql } from "apollo-boost"
+import ApolloClient, { gql } from "apollo-boost";
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000'
 });
 
-const handleCategoryFetch = async (value) => {
-    const response = await client
-        .query({
-            query: gql`
-                {
-                  category(input: {title: "${value}"}) {
-                    name
-                    products {
-                    id
-                    name
-                    inStock
-                    gallery
-                    attributes {
-                      id
-                      name
-                      type
-                      items {
-                        displayValue
-                        value
-                        id
-                      }
-                    }
-                    prices {
-                      currency {
-                      label
-                      symbol
-                      }
-                      amount
-                    }
-                    brand
-                    }
-                  }
+const handleCategoryFetch = async (categoryName) => {
+  const response = await client
+    .query({
+        query: gql`
+          {
+            category(input: {title: "${categoryName}"}) {
+              name
+              products {
+              id
+              name
+              inStock
+              gallery
+              attributes {
+                id
+                name
+                type
+                items {
+                  displayValue
+                  value
+                  id
                 }
-            `
-        })
-    return response.data.category.products
+              }
+              prices {
+                currency {
+                label
+                symbol
+                }
+                amount
+              }
+              brand
+              }
+            }
+          }
+        `
+    })
+  return response.data.category.products
 }
 
-const handleProductFetch = async (value) => {
-    const response = await client
+const handleProductFetch = async (productId) => {
+  const response = await client
     .query({
       query: gql`
         {
-          product(id: "${value}") {
+          product(id: "${productId}") {
           id
           name
           inStock
@@ -76,7 +76,23 @@ const handleProductFetch = async (value) => {
         }
       `
     })
-    return response.data.product
-  }
+  return response.data.product
+}
 
-  export { handleCategoryFetch, handleProductFetch }
+const handleCurrenciesFetch = async () => {
+  const response = await client
+    .query({
+      query: gql`
+        {
+          currencies {
+            label
+            symbol
+          }
+        }
+      `
+    })
+
+  return response.data.currencies
+}
+
+export { handleCategoryFetch, handleProductFetch, handleCurrenciesFetch }
