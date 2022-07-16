@@ -4,6 +4,20 @@ const client = new ApolloClient({
   uri: 'http://localhost:4000'
 });
 
+const handleCategoriesFetch = async () => {
+    const response = await client
+      .query({
+        query: gql`
+          {
+            categories {
+              name
+            }
+          }
+        `
+      })
+    return response.data.categories
+  }
+
 const handleCategoryFetch = async (categoryName) => {
   const response = await client
     .query({
@@ -95,4 +109,4 @@ const handleCurrenciesFetch = async () => {
   return response.data.currencies
 }
 
-export { handleCategoryFetch, handleProductFetch, handleCurrenciesFetch }
+export { handleCategoriesFetch, handleCategoryFetch, handleProductFetch, handleCurrenciesFetch }

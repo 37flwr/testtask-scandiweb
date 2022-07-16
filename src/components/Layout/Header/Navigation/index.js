@@ -1,40 +1,27 @@
-import React, { Component } from 'react'
-import ApolloClient, { gql } from 'apollo-boost'
+import { Component } from 'react'
 import HeaderNavLink from './HeaderNavLink'
+import { handleCategoriesFetch } from '../../../../utils'
+
 import './styles.scss'
 
-const client = new ApolloClient({
-  uri: 'http://localhost:4000'
-});
-
 export default class Navigation extends Component {
-  componentDidMount() {
-    this.handleCategoriesFetch()
+  state = {
+    categories: null
   }
   
-  async handleCategoriesFetch() {
-    const response = await client
-        .query({
-            query: gql`
-                {
-                    categories {
-                        name
-                    }
-                }
-            `
-        })
+  async componentDidMount() {
     this.setState({
-        categories: response.data.categories
+      categories: await handleCategoriesFetch()
     })
   }
 
   render() {
     return (
-        <div className='navigation'>
-            {this.state?.categories?.map(({ name }, idx) => 
-              <HeaderNavLink name={name} key={idx} />
-            )}
-        </div>
+      <div className='navigation'>
+        {this.state.categories?.map(({ name }, idx) => 
+          <HeaderNavLink name={name} key={idx} />
+        )}
+      </div>
     )
   }
 }

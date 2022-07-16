@@ -14,22 +14,6 @@ export default class HomePage extends Component {
   componentDidMount() {
     this.handleCategoriesFetch()
   }
-  
-  async handleCategoriesFetch() {
-    const response = await client
-        .query({
-            query: gql`
-                {
-                    categories {
-                        name
-                    }
-                }
-            `
-        })
-    this.setState({
-        categories: response.data.categories
-    })
-  }
 
   render() {
     return (
