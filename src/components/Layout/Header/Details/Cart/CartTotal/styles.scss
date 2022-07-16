@@ -1,0 +1,19 @@
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    font-size: 16px;
+    color: var(--color-primary);
+  }
+
+  .cart-total-label {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+  }
+
+  .cart-total-value {
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+  }
+}

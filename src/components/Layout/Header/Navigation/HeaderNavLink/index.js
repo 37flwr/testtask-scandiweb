@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import classNames from 'classnames'
-import { capitalizeFirstLetter } from '../../../../../../utils'
+import { capitalizeFirstLetter } from '../../../../../utils'
 import './styles.scss'
 
 export default class HeaderNavLink extends Component {

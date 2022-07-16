@@ -42,7 +42,7 @@ class ProductCard extends Component {
                             <IconCart className='add-to-cart-img' />
                         </button>
                         <Link
-                            to={`/item:${this.props.id}`}
+                            to={`/product:${this.props.id}`}
                             className='product-card-container'
                         >
                             <ProductCardContent 

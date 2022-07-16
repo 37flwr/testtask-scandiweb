@@ -1,22 +1,21 @@
-import React, { Component } from 'react';
+import { Component, createRef } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-
-import Item from './components/Item';
-import CartQnt from './components/CartQnt';
-import IconCart from '../../../../../../assets/Cart.svg'
-import CartButton from './components/CartButton';
-
-import {  handleCountCartItems, handleCountCartTotal } from '../../../../../../utils/cartActions';
+import Item from './Item';
+import CartQnt from './CartQnt';
+import CartButton from './CartButton';
+import { handleCountCartItems } from '../../../../../utils';
+import { ReactComponent as IconCart} from '../../../../../assets/Cart.svg'
 
 import './styles.scss'
+import CartTotal from './CartTotal';
 
 class Cart extends Component {
     constructor(props) {
         super(props)
 
-        this.wrapperRef = React.createRef();
+        this.wrapperRef = createRef();
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
@@ -24,18 +23,19 @@ class Cart extends Component {
         active: false,
     }
 
+    // Lifecycles
     componentDidMount() {
-        document.addEventListener("mousedown", this.handleClickOutside);
+        document.addEventListener('mousedown', this.handleClickOutside);
     }
 
     componentWillUnmount() {
-        document.removeEventListener("mousedown", this.handleClickOutside);
+        document.removeEventListener('mousedown', this.handleClickOutside);
     }
 
+    // Handlers
     handleElementClick() {
         this.setState({active: !this.state.active})
-        var app = document.body
-        app.classList.toggle('stop-scrolling')
+        document.body.classList.add('stop-scrolling')
     }
 
     handleCloseCart() {
@@ -53,13 +53,11 @@ class Cart extends Component {
     render() {
         return (
             <>
-            <div className='cart' ref={this.wrapperRef}>
+            <div className='dropdown-cart' ref={this.wrapperRef}>
                 {handleCountCartItems(this.props.cart.cart) ?
                     <>
-                        <img 
-                            src={IconCart} 
-                            alt=""
-                            className={classNames("cart-icon", this.state?.active && "cart-active")}
+                        <IconCart 
+                            className={classNames('cart-icon', this.state?.active && 'cart-active')}
                             onClick={() => {
                                 this.handleElementClick()
                             }}
@@ -70,17 +68,15 @@ class Cart extends Component {
                     </>
                 :
                     <Link to={'/cart'}>
-                        <img 
-                            src={IconCart} 
-                            alt=""
-                            className="cart-icon"
+                        <IconCart 
+                            className={classNames('cart-icon', this.state?.active && 'cart-active')}
                         />
                     </Link>
                 }
                 {this.state.active && (
-                    <div className="dropdown-cart">
+                    <div className='dropdown-cart-content'>
                         <CartQnt />
-                        <div className='dropdown-cart-list'>
+                        <div className='dropdown-cart-item-list'>
                             {this.props.cart.cart?.map((item) =>
                                 <Item
                                     key={item.item.id}
@@ -89,24 +85,22 @@ class Cart extends Component {
                                 />
                             )}
                         </div>
-                        <div className='cart-total'>
-                            <span><b>Total</b></span>
-                            <span>
-                                <b>{handleCountCartTotal(this.props.cart.cart, this.props.currency).currSymbol}{handleCountCartTotal(this.props.cart.cart, this.props.currency).total}</b>
-                            </span>
-                        </div>
+                        <CartTotal
+                            cart={this.props.cart.cart}
+                            currency={this.props.currency}
+                        />
                         <div className='cart-buttons'>
                             <CartButton
                                 path='/cart'
                                 text='View bag'
                                 className='unfilled'
-                                updateState={this.handleCloseCart.bind(this)}
+                                handleClick={this.handleCloseCart.bind(this)}
                             />
                             <CartButton
                                 path='/checkout'
                                 text='Check out'
                                 className='filled'
-                                updateState={this.handleCloseCart.bind(this)}
+                                handleClick={this.handleCloseCart.bind(this)}
                             />
                         </div>
                     </div>

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Form } from 'formik';
+import classNames from 'classnames';
 
 import { AttributeFormField } from '../../Formik/Fields'
 
 import './styles.scss';
-import classNames from 'classnames';
 
 const renderAttributeFormField = (item, name, type, idx) => (
   <AttributeFormField key={item.id} item={item} type={type} name={name} />

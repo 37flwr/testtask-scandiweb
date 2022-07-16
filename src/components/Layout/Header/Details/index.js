@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import CurrencyFormContainer from '../../../../Forms/CurrencyForm/CurrencyFormContainer'
+import CurrencyFormContainer from '../../../Forms/CurrencyForm/CurrencyFormContainer'
 import Cart from './Cart'
 import './styles.scss'
 

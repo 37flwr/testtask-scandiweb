@@ -1,0 +1,14 @@
+.dropdown-cart-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+
+  .cart-item-right-side {
+    display: flex;
+    gap: 8px;
+
+    .cart-item-photo {
+      width: 121px;
+    }
+  }
+}

@@ -1,9 +1,9 @@
-.item-details {
+.dropdown-cart-item-details {
   display: flex;
   flex-direction: column;
   gap: 4px;
 
-  .item-vitals {
+  .dropdown-cart-item-vitals {
     display: flex;
     flex-direction: column;
 
@@ -15,7 +15,7 @@
     }
   }
 
-  .item-price {
+  .dropdown-cart-item-price {
     margin-bottom: 4px;
 
     font-family: "Raleway", "sans-serif";
@@ -24,7 +24,7 @@
     color: var(--color-primary);
   }
 
-  .item-attr-container {
+  .dropdown-cart-item-attr-container {
     display: flex;
     flex-direction: column;
     gap: 8px;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Formik } from 'formik'
 import { connect } from 'react-redux';
+import { Formik } from 'formik'
+
 import AttributeForm from './AttributeForm'
 
 class AttributesFormContainer extends Component {
@@ -10,7 +11,7 @@ class AttributesFormContainer extends Component {
             this.initialValues = this.props.initialValues
         } else {
             this.initialValues = {}
-            this.props.values?.map((attributeGroup) => {
+            this.props.values?.forEach((attributeGroup) => {
                 this.setInitialValues(attributeGroup.name.toLowerCase(), attributeGroup.items[0].value)
             })
         }
@@ -39,16 +40,16 @@ class AttributesFormContainer extends Component {
                     onSubmit={(form) => {
                         this.props.handleSubmit(form)
                     }}
-                    >
-                        {({values}) => 
-                            <AttributeForm
-                                values={values}
-                                initialValues={this.props.values}
-                                itemId={this.props.itemId}
-                                type={this.props.type}
-                                atCart={this.props.atCart}
-                            />
-                        }
+                >
+                    {({values}) => 
+                        <AttributeForm
+                            values={values}
+                            initialValues={this.props.values}
+                            itemId={this.props.itemId}
+                            type={this.props.type}
+                            atCart={this.props.atCart}
+                        />
+                    }
                 </Formik>
                 {this.props.atCart && <div className='attributes-form-blur' style={{'height': this.state?.formBlur}}/>}
             </>

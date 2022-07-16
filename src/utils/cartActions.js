@@ -66,7 +66,10 @@ const handleChangeAttributes = (attributes, item, cart) => {
 
 const handleCountCartItems = (cart) => {
     const total = cart?.reduce((a, b) => a + b.qnt, 0)
-    return total
+    if(total !== 0) {
+        return total
+    }
+    return false
 }
 
 const handleCountCartTotal = (cart, currency) => {
@@ -82,7 +85,7 @@ const handleCountCartTotal = (cart, currency) => {
 
     const getCurrentCurrency = (cart) => {
         let currencySymbol = 'UNDF'
-        cart[0].item.prices.forEach((curr) => {
+        cart[0]?.item.prices.forEach((curr) => {
             if (curr.currency.label.toLowerCase() === currency.currency) {
                 currencySymbol = curr.currency.symbol
             }

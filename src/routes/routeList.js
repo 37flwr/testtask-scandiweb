@@ -15,13 +15,13 @@ export const publicRoutes = [
         component: ProductListPage,
     },
     {
-        path: `/item:id`,
+        path: `/product:id`,
         exact: false,
         component: ProductPage,
     },
     {
         path: `/cart`,
-        exact: false,
+        exact: true,
         component: CartPage,
     },
 ]

@@ -1,4 +1,4 @@
-.cart {
+.dropdown-cart {
   position: relative;
   z-index: 3;
 
@@ -29,9 +29,9 @@
     cursor: pointer;
   }
 
-  .dropdown-cart {
+  .dropdown-cart-content {
     position: absolute;
-    top: 200%;
+    top: 185%;
     right: -20px;
     z-index: 6;
     max-height: 80vh;
@@ -44,15 +44,10 @@
     flex-direction: column;
     gap: 32px;
 
-    .dropdown-cart-list {
+    .dropdown-cart-item-list {
       display: flex;
       flex-direction: column;
       gap: 40px;
-    }
-
-    .cart-total {
-      display: flex;
-      justify-content: space-between;
     }
 
     .cart-buttons {
