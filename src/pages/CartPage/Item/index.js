@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { connect } from 'react-redux'
-import { changeCart } from '../../../store/actions'
-import { handleAddToCart, handleRemoveFromCart } from '../../../utils'
 import ItemDetails from './ItemDetails'
-import { ReactComponent as Arrow } from '../../../assets/Arrow.svg'
-import './styles.scss'
 import PhotoPicker from './PhotoPicker'
+import ItemQnt from './ItemQnt'
+
+import './styles.scss'
 
 class Item extends Component {
   state = {
@@ -13,13 +12,13 @@ class Item extends Component {
   }
 
   setNextImage() {
-    if(this.props.item.item.gallery.length-1 === this.state.mainImg) {
+    if(this.props.item.item.gallery.length - 1 === this.state.mainImg) {
       this.setState({
         mainImg: 0
       })
     } else {
       this.setState({
-        mainImg: this.state.mainImg+1
+        mainImg: this.state.mainImg + 1
       })
     }
   }
@@ -27,11 +26,11 @@ class Item extends Component {
   setPreviousImage() {
     if(this.state.mainImg === 0) {
       this.setState({
-        mainImg: this.props.item.item.gallery.length-1
+        mainImg: this.props.item.item.gallery.length - 1
       })
     } else {
       this.setState({
-        mainImg: this.state.mainImg-1
+        mainImg: this.state.mainImg - 1
       })
     }
   }
@@ -41,17 +40,10 @@ class Item extends Component {
         <div className='cart-item'>
             <ItemDetails item={this.props.item} />
             <div className='cart-item-right-side'>
-              <div className='cart-item-qnt'>
-                  <div className='cart-item-qnt-handler' onClick={() => this.props.changeCart(handleAddToCart(this.props.cart, this.props.item.item))}>
-                      +
-                  </div>
-                  <span>
-                      {this.props.item.qnt}
-                  </span>
-                  <div className='cart-item-qnt-handler' onClick={() => this.props.changeCart(handleRemoveFromCart(this.props.cart, this.props.item.item))}>
-                      -
-                  </div>
-              </div>
+              <ItemQnt
+                cart={this.props.cart}
+                item={this.props.item}
+              />
               <div className='cart-item-photo'>
                 <img
                     src={this.props.item.item.gallery[this.state.mainImg]}
@@ -81,12 +73,5 @@ const mapStateToProps = state => ({
     cart: state.Cart
 });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    changeCart: product => {
-      dispatch(changeCart(product))
-    }
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Item)
+export default connect(mapStateToProps, null)(Item)

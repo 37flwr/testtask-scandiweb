@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
 import Item from './Item'
-
+import CheckoutLine from './CheckoutLine'
 import { handleCountCartItems, handleCountCartTotal } from '../../utils'
 
 import './styles.scss'
-import CheckoutLine from './CheckoutLine'
 
 class CartPage extends Component {
     getAttributesForCheckout(attributes) {
@@ -24,7 +22,7 @@ class CartPage extends Component {
                     Cart
                 </h1>
                 <div className='cart-line' />
-                {this.props.cart.cart && this.props.cart.cart.length > 0 ? 
+                {this.props.cart.cart.length > 0 ? 
                     <>
                         {this.props.cart.cart.map((item, idx) => 
                             <Item
@@ -52,20 +50,19 @@ class CartPage extends Component {
                                 className='cart-checkout-btn'
                                 onClick={() => {
                                     let res = `You ordered:\n\n`
-
-                                    this.props.cart.cart.map((item) => {
+                                    this.props.cart.cart.forEach((item) => {
                                         res = res + item.qnt + ' ' + item.item.name + ' ' + item.item.brand + '\n' + this.getAttributesForCheckout(item.attributes) + '\n'
                                     })
-
                                     res = res + 'Total: ' + handleCountCartTotal(this.props.cart.cart, this.props.currency).currSymbol + handleCountCartTotal(this.props.cart.cart, this.props.currency).total
                                     alert(res);
-                                }}>
+                                }}
+                            >
                                 Order
                             </button>
                         </div>
                     </>
                 :
-                    <h1>
+                    <h1 className='cart-is-empty'>
                         Your cart is empty
                     </h1>
                 }

@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import { Component } from 'react';
+
+import './styles.scss';
 
 export default class CheckoutLine extends Component {
   render() {

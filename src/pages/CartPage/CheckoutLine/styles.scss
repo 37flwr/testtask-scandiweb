@@ -1,0 +1,18 @@
+.cart-checkout-line {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+
+  .cart-chechout-title {
+    font-family: "Raleway", "sans-serif";
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--color-primary);
+  }
+
+  .cart-checkout-value {
+    font-family: "Raleway", "sans-serif";
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--color-primary);
+  }
+}
