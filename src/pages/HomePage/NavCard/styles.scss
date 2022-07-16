@@ -1,4 +1,4 @@
-.nav-card {
+.home-page-nav-card {
   height: 100%;
   width: 100%;
 
@@ -9,11 +9,11 @@
   border: 2px solid var(--color-primary);
   border-radius: 5px;
 
-  color: var(--color-primary);
-  font-size: 30px;
   font-family: "Raleway", "sans-serif";
+  font-size: 30px;
   font-weight: 400;
   text-decoration: none;
+  color: var(--color-primary);
 
   &:hover {
     transform: translate(-1px, -1px);
