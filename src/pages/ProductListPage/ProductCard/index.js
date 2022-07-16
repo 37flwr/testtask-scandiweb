@@ -2,32 +2,17 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
-
 import ProductCardContent from './ProductCardContent'
-
 import { changeCart } from '../../../store/actions'
 import { handleAddToCart } from '../../../utils'
-
 import {ReactComponent as IconCart } from '../../../assets/Cart.svg'
 
 import './styles.scss'
 
 class ProductCard extends Component {
-    setLocationSearch(item) {
-        let search = '?';
-        item.attributes.map((attribute, idx) => {
-            const value = attribute.type === 'swatch' ? attribute.items[0].value.slice(1).toLowerCase() : attribute.items[0].value
-            search = search + attribute.id.toLowerCase() + '=' + value
-            if(idx !== item.attributes.length-1) {
-                search = search + '&'
-            }
-        })
-        return search
-    }
-
     setAttributes(attributes) {
         const attributesOutput = {}
-        attributes.map((attrGroup) => {
+        attributes.forEach((attrGroup) => {
             attributesOutput[attrGroup.name.toLowerCase()] = attrGroup.items[0].value
         })
         return attributesOutput
@@ -35,15 +20,24 @@ class ProductCard extends Component {
 
     render() {
         return (
-            <div className={classNames('product-card', this.props.inStock && 'active')}>
+            <div className={classNames('product-list-card', this.props.inStock && 'active')}>
                 {this.props.inStock? 
                     <>
-                        <button className='add-to-cart-btn' onClick={() => this.props.changeCart(handleAddToCart(this.props.cart, this.props.item, this.setAttributes(this.props.item.attributes)))}>
+                        <button
+                            className='add-to-cart-btn'
+                            onClick={() => this.props.changeCart(
+                                handleAddToCart(
+                                    this.props.cart,
+                                    this.props.item,
+                                    this.setAttributes(this.props.item.attributes)
+                                )
+                            )}
+                        >
                             <IconCart className='add-to-cart-img' />
                         </button>
                         <Link
                             to={`/product:${this.props.id}`}
-                            className='product-card-container'
+                            className='product-list-card-container'
                         >
                             <ProductCardContent 
                                 img={this.props.img}
@@ -55,10 +49,10 @@ class ProductCard extends Component {
                     </>
                 :
                     <>
-                        <div className='product-stock-status'>
+                        <div className='product-status'>
                             Out of stock
                         </div>
-                        <div className='product-card-container out-of-stock'>
+                        <div className='product-list-card-container out-of-stock'>
                             <ProductCardContent 
                                 img={this.props.img}
                                 title={this.props.title}

@@ -1,14 +1,18 @@
 .product-list-page {
   padding: 80px 101px;
+
   .product-list-page-heading {
-    color: var(--color-primary);
+    margin-bottom: 114px;
+
     font-size: 42px;
     font-weight: 400;
     font-family: "Raleway", "sans-serif";
-    margin-bottom: 114px;
+    color: var(--color-primary);
   }
-  .products-grid {
+
+  .product-list-grid {
     padding: 0 15px;
+
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 50px;
@@ -16,6 +20,7 @@
 
   .loader-container {
     height: calc(100vh - 242px);
+
     display: flex;
     justify-content: center;
     align-items: center;
