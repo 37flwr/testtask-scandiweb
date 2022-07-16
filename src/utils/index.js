@@ -4,14 +4,14 @@ import { handleCategoryFetch, handleProductFetch, handleCurrenciesFetch } from "
 import { getParams } from "./params.ts";
 
 export { 
-    capitalizeFirstLetter, 
-    getParams,
-    handleAddToCart, 
-    handleRemoveFromCart, 
-    handleCountCartItems, 
+    capitalizeFirstLetter,
+    handleAddToCart,
+    handleRemoveFromCart,
+    handleCountCartItems,
     handleCountCartTotal,
     handleChangeAttributes,
     handleCategoryFetch,
     handleProductFetch,
-    handleCurrenciesFetch
+    handleCurrenciesFetch,
+    getParams,
 }

@@ -1,64 +1,63 @@
-const handleRemoveFromCart = (cart, newItem, closeCartHandler) => {
-    let changed = false
-    const currCart = cart.cart
-    
-    if(currCart) {
-        currCart.map((item, idx) => 
-        {
-            if(item.item.id === newItem.id) {
-                if(currCart[idx].qnt === 1) {
-                    currCart.splice(idx, 1)
-                    if(closeCartHandler) {
-                        closeCartHandler()
-                    }
-                    return currCart
-                }
-                currCart[idx].qnt -= 1
-                changed = true
-                return currCart
-            }
-        })
-        if (!changed) {
-            return cart.cart
-        }
-        return currCart
-    }
-}
+const handleAddToCart = (cart, item, attributes) => {
+    const myCart = cart.cart;
 
-const handleAddToCart = (cart, newItem, attributes) => {
-    const currCart = cart.cart
+    if(myCart) {
+        let changed = false;
 
-    if(currCart) {
-        let changed = false
-
-        currCart.map((item, idx) => {
-            if(item.item.id === newItem.id) {
-                currCart[idx].qnt += 1
+        myCart.forEach((cartItem, idx) => {
+            if(cartItem.item.id === item.id) {
+                myCart[idx].qnt += 1
                 changed = true
             }
         })
 
         if(!changed) {
-            currCart.push({
+            myCart.push({
                 qnt: 1,
                 attributes,
-                item: newItem
+                item: item
             })
         }
 
-        return currCart
+        return myCart
     }
 
-    return [{qnt: 1, attributes, item: newItem}]
+    return [{qnt: 1, attributes, item: item}]
+}
+
+const handleRemoveFromCart = (cart, item, closeCartHandler) => {
+    const myCart = cart.cart
+    
+    if(myCart) {
+        let changed = false
+        myCart.forEach((cartItem, idx) => 
+            {
+                if(cartItem.item.id === item.id) {
+                    if(myCart[idx].qnt === 1) {
+                        myCart.splice(idx, 1)
+                        if(closeCartHandler) {
+                            closeCartHandler()
+                        }
+                        return myCart
+                    }
+                    myCart[idx].qnt -= 1
+                    changed = true
+                }
+                return myCart
+            })
+        if (!changed) {
+            return cart.cart
+        }
+        return myCart
+    }
 }
 
 const handleChangeAttributes = (attributes, item, cart) => {
     const currCart = cart.cart
 
-    currCart.map((cartItem, idx) => {
+    currCart.forEach((cartItem, idx) => {
         if(cartItem.item.id === item.id) {
             currCart[idx].attributes = attributes
-            return true
         }
     })
 
@@ -66,19 +65,14 @@ const handleChangeAttributes = (attributes, item, cart) => {
 }
 
 const handleCountCartItems = (cart) => {
-    let i = 0;
-    cart?.map((item) => i = i + item.qnt)
-
-    if(i !== 0) {
-        return i
-    }
-    return false
+    const total = cart?.reduce((a, b) => a + b.qnt, 0)
+    return total
 }
 
 const handleCountCartTotal = (cart, currency) => {
-    const countCartTotal = (item) => {
+    const countItemTotal = (item) => {
         let amount = 0;
-        item.item.prices.map((curr) => {
+        item.item.prices.forEach(curr => {
             if (curr.currency.label.toLowerCase() === currency.currency) {
                 amount = curr.amount
             }
@@ -88,7 +82,7 @@ const handleCountCartTotal = (cart, currency) => {
 
     const getCurrentCurrency = (cart) => {
         let currencySymbol = 'UNDF'
-        cart[0].item.prices.map((curr) => {
+        cart[0].item.prices.forEach((curr) => {
             if (curr.currency.label.toLowerCase() === currency.currency) {
                 currencySymbol = curr.currency.symbol
             }
@@ -96,13 +90,12 @@ const handleCountCartTotal = (cart, currency) => {
         return currencySymbol
     }
 
-    let currencyLabel = getCurrentCurrency(cart);
-    let total = 0;
+    const currencyLabel = getCurrentCurrency(cart);
+    const total = cart.reduce((a, b) => 
+        a + b.qnt * countItemTotal(b), 0
+    )
 
-    cart.map((item) => {
-        total = total + item.qnt * countCartTotal(item)
-    })
     return {currSymbol: currencyLabel, total: total.toFixed(2)}
-    }
+}
 
 export { handleRemoveFromCart, handleAddToCart, handleCountCartItems, handleCountCartTotal, handleChangeAttributes }

@@ -23,11 +23,11 @@ class AttributeForm extends Component {
 
   render() {
     return (
-      <Form className="product-attributes-container" autoComplete="off">
+      <Form className={classNames("product-attributes-container", this.props.atCart && 'form-disabled')} id={this.props.itemId} autoComplete="off">
         {this.props.initialValues?.map((attributeGroup) => 
-          <div className='product-attribute' key={attributeGroup.name.toLowerCase()}  id={this.props.itemId}>
+          <div className='product-attribute' key={attributeGroup.name.toLowerCase()}>
             <span className={classNames('product-attribute-heading', this.props.type === 'dropdown' && 'attribute-dropdown-heading')}>{attributeGroup.name}:</span>
-            <div className={classNames('product-attribute-container', this.props.type === 'dropdown' && 'dropdown-type', this.props.atCart && 'form-disabled')}>
+            <div className={classNames('product-attribute-container', this.props.type === 'dropdown' && 'dropdown-type')}>
               {attributeGroup.items.map((item) => renderAttributeFormField(item, attributeGroup.name.toLowerCase(), attributeGroup.type))}
             </div>
           </div>

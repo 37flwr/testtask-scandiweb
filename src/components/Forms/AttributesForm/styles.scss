@@ -32,10 +32,6 @@
       gap: 10px;
     }
 
-    .form-disabled {
-      opacity: 0.6;
-    }
-
     .dropdown-type {
       gap: 8px;
 
@@ -62,6 +58,10 @@
       }
     }
   }
+}
+
+.form-disabled {
+  opacity: 0.6;
 }
 
 .attributes-form-blur {
