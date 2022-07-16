@@ -1,16 +1,10 @@
-import classNames from 'classnames';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeCart } from '../../../store/actions';
-
 import AttributesFormContainer from '../../../components/Forms/AttributesForm/AttributesFormContainer';
-
-import { handleAddToCart } from '../../../utils';
-
-import './styles.scss';
-import { Link } from 'react-router-dom';
 import ProductPrice from './ProductPrice';
 import ProductPageButton from './ProductPageButton';
+
+import './styles.scss';
 
 class ProductDetails extends Component {
     state = {
