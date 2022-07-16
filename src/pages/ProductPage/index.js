@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import { useParams } from 'react-router';
-import { connect } from 'react-redux';
-
 import PhotoGallery from './PhotoGallery';
 import ProductDetails from './ProductDetails';
 import Loader from '../../components/Loader';
-
 import { handleProductFetch } from '../../utils';
 
 import './styles.scss'
@@ -13,12 +10,13 @@ import './styles.scss'
 class ProductPage extends Component {
   state = {
     product: null,
+    mainImg: null
   }
 
+  // Lifecycles
   async componentDidMount() {
     const product = await handleProductFetch(this.props.params.id.slice(1))
     this.setState({
-      type: this.props.params.id.slice(1),
       product: product,
       mainImg: product.gallery[0]
     })
@@ -28,13 +26,13 @@ class ProductPage extends Component {
     if(prevState.params.id !== this.props.params.id) {
       const product = await handleProductFetch(this.props.params.id.slice(1))
       this.setState({
-        type: this.props.params.id.slice(1),
         product: product,
         mainImg: product.gallery[0]
       })
     }
   }
 
+  // Handlers
   updateMainPhoto(img) {
     this.setState({
       mainImg: img
@@ -45,7 +43,7 @@ class ProductPage extends Component {
   render() {
     return (
       <section className='product-page'>
-        {this.state.product ?
+        {this.state.product && this.state.mainImg ?
           <>
             <PhotoGallery
               gallery={this.state.product?.gallery}

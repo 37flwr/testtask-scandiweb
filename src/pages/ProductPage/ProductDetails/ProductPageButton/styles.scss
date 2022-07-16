@@ -1,0 +1,38 @@
+.add-to-cart-btn {
+  width: 292px;
+  height: 52px;
+
+  border: none;
+  background-color: var(--color-selected);
+
+  font-family: "Raleway", "sans-serif";
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-white);
+
+  cursor: pointer;
+}
+
+.cart-not-active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+
+  .disabled {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(211, 210, 213);
+  }
+
+  .cart-link {
+    font-family: "Raleway", "sans-serif";
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    color: var(--color-primary);
+  }
+}
