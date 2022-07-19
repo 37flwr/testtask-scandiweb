@@ -8,14 +8,14 @@ export default class Modal extends Component {
             <>
                 <section className='modal'>
                     <div className='modal-container'>
-                        <p className='modal-text'>
+                        <div className='modal-text'>
                             <span className='modal-text-heading'><b>Make sure you:</b></span>
                             <ul className='modal-text-list'>
                                 <li className='modal-text-item'>Clone https://github.com/scandiweb/junior-react-endpoint</li>
                                 <li className='modal-text-item'>Install packages (type "npm install" in terminal)</li>
                                 <li className='modal-text-item'>Run "yarn start"</li>
                             </ul>
-                        </p>
+                        </div>
                         <button
                             className='modal-button'
                             onClick={() => this.props.handleClick()}

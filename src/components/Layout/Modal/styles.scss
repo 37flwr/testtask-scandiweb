@@ -8,7 +8,7 @@
   align-items: center;
 
   position: absolute;
-  top: 50%;
+  top: 50vh;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
@@ -71,10 +71,11 @@
 }
 
 .modal-blur {
-  height: calc(100vh - 80px);
+  height: calc(100vh + 20px);
   width: calc(100vw + 20px);
 
   position: absolute;
+  top: -20px;
   left: -20px;
   z-index: 99;
 

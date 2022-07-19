@@ -59,16 +59,14 @@
 }
 
 .cart-blur {
-  z-index: 2;
+  width: calc(100vw + 20px);
   height: 100%;
-  overflow: hidden;
+
   position: absolute;
   top: 81px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100vw;
+  left: -20px;
+  z-index: 2;
+
   background-color: #393748;
   opacity: 0.22;
-  overflow: hidden;
 }
