@@ -1,0 +1,82 @@
+.modal {
+  width: 50vw;
+  height: 400px;
+  margin: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+
+  background-color: var(--color-white);
+
+  .modal-container {
+    width: 75%;
+    height: 75%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .modal-text {
+      width: 100%;
+
+      .modal-text-heading {
+        display: flex;
+        justify-content: center;
+
+        font-family: "Raleway", sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--color-primary);
+      }
+
+      .modal-text-list {
+        font-family: "Raleway", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: var(--color-primary);
+
+        .modal-text-item:not(:last-child) {
+          margin-bottom: 15px;
+        }
+      }
+    }
+
+    .modal-button {
+      all: unset;
+
+      width: 125px;
+      height: 40px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Raleway", sans-serif;
+
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--color-white);
+      background-color: var(--color-selected);
+
+      cursor: pointer;
+    }
+  }
+}
+
+.modal-blur {
+  height: calc(100vh - 80px);
+  width: calc(100vw + 20px);
+
+  position: absolute;
+  left: -20px;
+  z-index: 99;
+
+  background-color: var(--background-transparent);
+}
