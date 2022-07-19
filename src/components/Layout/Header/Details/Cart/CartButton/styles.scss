@@ -1,4 +1,6 @@
 .cart-button {
+  all: unset;
+
   width: 140px;
   height: 43px;
 
@@ -11,6 +13,8 @@
   font-family: "Raleway", "sans-serif";
   font-weight: 600;
   font-size: 14px;
+
+  cursor: pointer;
 }
 
 .unfilled {

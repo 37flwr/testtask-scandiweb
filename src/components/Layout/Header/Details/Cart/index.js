@@ -6,6 +6,7 @@ import Item from './Item';
 import CartQnt from './CartQnt';
 import CartButton from './CartButton';
 import { handleCountCartItems } from '../../../../../utils';
+import { handleCountCartTotal } from '../../../../../utils';
 import { ReactComponent as IconCart} from '../../../../../assets/Cart.svg'
 
 import './styles.scss'
@@ -50,6 +51,23 @@ class Cart extends Component {
         }
     }
 
+    getAttributesForCheckout(attributes) {
+        let output = ''
+        for (const key in attributes) {
+            output = output + key[0].toUpperCase() + key.slice(1) + ': ' + attributes[key] + '\n';
+        }
+        return output
+    }
+
+    handleCheckout() {
+        let res = `You ordered:\n\n`
+        this.props.cart.cart.forEach((item) => {
+            res = res + item.qnt + ' ' + item.item.name + ' ' + item.item.brand + '\n' + this.getAttributesForCheckout(item.attributes) + '\n'
+        })
+        res = res + 'Total: ' + handleCountCartTotal(this.props.cart.cart, this.props.currency).currSymbol + handleCountCartTotal(this.props.cart.cart, this.props.currency).total
+        alert(res);
+    }
+a
     render() {
         return (
             <>
@@ -97,10 +115,9 @@ class Cart extends Component {
                                 handleClick={this.handleCloseCart.bind(this)}
                             />
                             <CartButton
-                                path='/checkout'
                                 text='Check out'
                                 className='filled'
-                                handleClick={this.handleCloseCart.bind(this)}
+                                handleClick={this.handleCheckout.bind(this)}
                             />
                         </div>
                     </div>
