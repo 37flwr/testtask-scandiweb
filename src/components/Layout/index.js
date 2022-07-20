@@ -12,6 +12,7 @@ export default class Layout extends Component {
     this.setState({
       modal: true
     })
+    window.scrollTo(0, 0);
     document.body.classList.add('stop-scrolling')
   }
 
