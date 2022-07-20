@@ -37,10 +37,13 @@
 
       .product-text-attribute {
         height: 24px;
-        width: 24px;
-        padding: 0;
+        width: auto;
+        padding: auto;
 
         .attribute-text {
+          width: fit-content;
+          padding: 0 5px;
+
           font-size: 14px;
         }
       }
